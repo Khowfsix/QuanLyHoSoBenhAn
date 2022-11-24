@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9143c7c7d26a45a3bf6a3674251d30ce" Name="Diagram1">
+        <EntityTypeShape EntityType="QLHSBAModel.Account" Width="1.5" PointX="8" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.CreatedPrescription" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Department" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Employee" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Examination" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.MedicineGroup" Width="1.5" PointX="1.5" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Medicine" Width="1.5" PointX="0.75" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Patient" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Pay" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Person" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Prescription_Medicine" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Prescription" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Receipt" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Role" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Service" Width="1.5" PointX="0.75" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.sysdiagram" Width="1.5" PointX="8.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.UsingService" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Doctor" Width="1.5" PointX="8.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Examination" Width="1.5" PointX="10.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Patients" Width="1.5" PointX="10.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Staff" Width="1.5" PointX="10.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_UsingService" Width="1.5" PointX="12.75" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="QLHSBAModel.roleFkey" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.CreatedPrescription_Employee_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.CreatedPrescription_Patient_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.CreatedPrescription_Prescription_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.belongDepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.employeeExam" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.employeePay" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.people_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.patientExam" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.Medicine_MedicineGroup_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.Medicine_Prescription_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.patientPay" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.people_patient" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.pUsingFKEY" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.receiptPay" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.Prescription_Medicine_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.sUsingFKEY" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHSBAModel.Relatives" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

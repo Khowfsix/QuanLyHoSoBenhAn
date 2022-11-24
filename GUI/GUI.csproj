@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66442503-454C-4854-B64B-485B89B3BB7F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUI</RootNamespace>
+    <AssemblyName>GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Index.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Index.Designer.cs">
+      <DependentUpon>Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pay_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Pay_list.Designer.cs">
+      <DependentUpon>Pay_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Receipt_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Receipt_list.Designer.cs">
+      <DependentUpon>Receipt_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SuDungDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SuDungDichVu.Designer.cs">
+      <DependentUpon>SuDungDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThemThanNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ThemThanNhan.Designer.cs">
+      <DependentUpon>ThemThanNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThongtinBenhNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ThongtinBenhNhan.Designer.cs">
+      <DependentUpon>ThongtinBenhNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThongTinDonKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ThongTinDonKham.Designer.cs">
+      <DependentUpon>ThongTinDonKham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TiepNhanBenhNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TiepNhanBenhNhan.Designer.cs">
+      <DependentUpon>TiepNhanBenhNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TrangChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TrangChu.Designer.cs">
+      <DependentUpon>TrangChu.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\Pay_list.resx">
+      <DependentUpon>Pay_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Receipt_list.resx">
+      <DependentUpon>Receipt_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SuDungDichVu.resx">
+      <DependentUpon>SuDungDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ThemThanNhan.resx">
+      <DependentUpon>ThemThanNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ThongtinBenhNhan.resx">
+      <DependentUpon>ThongtinBenhNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ThongTinDonKham.resx">
+      <DependentUpon>ThongTinDonKham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TiepNhanBenhNhan.resx">
+      <DependentUpon>TiepNhanBenhNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TrangChu.resx">
+      <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS\BUS.csproj">
+      <Project>{10bee057-357a-4c9d-ab3d-ad5f148d2db9}</Project>
+      <Name>BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{4f7cb950-1838-42ee-a0e8-d48a3f4adac1}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>
