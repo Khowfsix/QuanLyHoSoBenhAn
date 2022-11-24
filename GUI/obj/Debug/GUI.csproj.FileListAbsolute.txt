@@ -27,3 +27,7 @@ D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\FinalProject_DBMS\GUI\obj\D
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\FinalProject_DBMS\GUI\obj\Debug\GUI.View.ThongTinDonKham.resources
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\FinalProject_DBMS\GUI\obj\Debug\GUI.View.SuDungDichVu.resources
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\FinalProject_DBMS\GUI\obj\Debug\GUI.View.ThemThanNhan.resources
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.csproj.SuggestedBindingRedirects.cache
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.exe
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.pdb

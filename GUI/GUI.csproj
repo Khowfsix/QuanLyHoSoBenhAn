@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66442503-454C-4854-B64B-485B89B3BB7F}</ProjectGuid>
+    <ProjectGuid>{CC4583E7-EA1E-4AC5-8EA3-1963B9B1EF1B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GUI</RootNamespace>
     <AssemblyName>GUI</AssemblyName>
@@ -42,9 +42,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.4.4\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,62 +62,77 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Doctor\Form1.cs" />
+    <Compile Include="Doctor\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\frmExamine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doctor\frmExamine.Designer.cs">
+      <DependentUpon>frmExamine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\frmMedicine.cs" />
+    <Compile Include="Doctor\frmMedicine.Designer.cs">
+      <DependentUpon>frmMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\frmMedicineGroup.cs" />
+    <Compile Include="Doctor\frmMedicineGroup.Designer.cs">
+      <DependentUpon>frmMedicineGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\frmPrescription.cs" />
+    <Compile Include="Doctor\frmPrescription.Designer.cs">
+      <DependentUpon>frmPrescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Index.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Index.Designer.cs">
-      <DependentUpon>Index.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pay_list.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Pay_list.Designer.cs">
+    <Compile Include="Staff\Pay_list.cs" />
+    <Compile Include="Staff\Pay_list.designer.cs">
       <DependentUpon>Pay_list.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Receipt_list.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Receipt_list.Designer.cs">
+    <Compile Include="Staff\Receipt_list.cs" />
+    <Compile Include="Staff\Receipt_list.designer.cs">
       <DependentUpon>Receipt_list.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SuDungDichVu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SuDungDichVu.Designer.cs">
+    <Compile Include="Staff\SuDungDichVu.cs" />
+    <Compile Include="Staff\SuDungDichVu.designer.cs">
       <DependentUpon>SuDungDichVu.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ThemThanNhan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\ThemThanNhan.Designer.cs">
+    <Compile Include="Staff\ThemThanNhan.cs" />
+    <Compile Include="Staff\ThemThanNhan.designer.cs">
       <DependentUpon>ThemThanNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ThongtinBenhNhan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\ThongtinBenhNhan.Designer.cs">
+    <Compile Include="Staff\ThongtinBenhNhan.cs" />
+    <Compile Include="Staff\ThongtinBenhNhan.designer.cs">
       <DependentUpon>ThongtinBenhNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ThongTinDonKham.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\ThongTinDonKham.Designer.cs">
+    <Compile Include="Staff\ThongTinDonKham.cs" />
+    <Compile Include="Staff\ThongTinDonKham.designer.cs">
       <DependentUpon>ThongTinDonKham.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\TiepNhanBenhNhan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\TiepNhanBenhNhan.Designer.cs">
+    <Compile Include="Staff\TiepNhanBenhNhan.cs" />
+    <Compile Include="Staff\TiepNhanBenhNhan.designer.cs">
       <DependentUpon>TiepNhanBenhNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\TrangChu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\TrangChu.Designer.cs">
+    <Compile Include="Staff\TrangChu.cs" />
+    <Compile Include="Staff\TrangChu.designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Doctor\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor\frmExamine.resx">
+      <DependentUpon>frmExamine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor\frmMedicine.resx">
+      <DependentUpon>frmMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor\frmMedicineGroup.resx">
+      <DependentUpon>frmMedicineGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor\frmPrescription.resx">
+      <DependentUpon>frmPrescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -121,28 +142,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Pay_list.resx">
+    <EmbeddedResource Include="Staff\Pay_list.resx">
       <DependentUpon>Pay_list.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Receipt_list.resx">
+    <EmbeddedResource Include="Staff\Receipt_list.resx">
       <DependentUpon>Receipt_list.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SuDungDichVu.resx">
+    <EmbeddedResource Include="Staff\SuDungDichVu.resx">
       <DependentUpon>SuDungDichVu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ThemThanNhan.resx">
+    <EmbeddedResource Include="Staff\ThemThanNhan.resx">
       <DependentUpon>ThemThanNhan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ThongtinBenhNhan.resx">
+    <EmbeddedResource Include="Staff\ThongtinBenhNhan.resx">
       <DependentUpon>ThongtinBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ThongTinDonKham.resx">
+    <EmbeddedResource Include="Staff\ThongTinDonKham.resx">
       <DependentUpon>ThongTinDonKham.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\TiepNhanBenhNhan.resx">
+    <EmbeddedResource Include="Staff\TiepNhanBenhNhan.resx">
       <DependentUpon>TiepNhanBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\TrangChu.resx">
+    <EmbeddedResource Include="Staff\TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -161,14 +182,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BUS\BUS.csproj">
-      <Project>{10bee057-357a-4c9d-ab3d-ad5f148d2db9}</Project>
+      <Project>{c5d8fa0a-5b23-471b-a915-e603241b583a}</Project>
       <Name>BUS</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{4f7cb950-1838-42ee-a0e8-d48a3f4adac1}</Project>
+      <Project>{4a040a20-03a9-4b53-ae6f-b0fc635df77e}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -178,4 +200,11 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
