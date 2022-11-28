@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -10,7 +11,7 @@ using System.Xml.Linq;
 
 namespace BUS.impl
 {
-    public class PeopleBUS_impl : iPeopleBUS
+    public class PeopleBUS_impl
     {
         private QLHSBAEntities db = new QLHSBAEntities();
         public void Create(Person obj)

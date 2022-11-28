@@ -1,7 +1,7 @@
 ﻿using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Globalization;

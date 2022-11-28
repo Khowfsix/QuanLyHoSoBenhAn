@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace BUS.impl
 {
-    public class PatientBUS_impl : iPatientBUS
+    public class PatientBUS_impl 
     {
         private QLHSBAEntities db = new QLHSBAEntities();
 

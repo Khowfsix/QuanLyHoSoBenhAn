@@ -2,12 +2,12 @@
 <Schema Namespace="QLHSBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Account">
     <Key>
-      <PropertyRef Name="accountId" />
+      <PropertyRef Name="accountName" />
     </Key>
-    <Property Name="accountId" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="password" Type="varchar" MaxLength="20" />
-    <Property Name="status" Type="tinyint" />
-    <Property Name="role" Type="varchar" MaxLength="20" />
+    <Property Name="accountName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="CreatedPrescription">
     <Key>
@@ -20,7 +20,6 @@
     <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="quanlity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>
@@ -49,14 +48,18 @@
     <Property Name="examinateID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="height" Type="float" Nullable="false" />
-    <Property Name="weight" Type="float" Nullable="false" />
-    <Property Name="temperature" Type="float" Nullable="false" />
-    <Property Name="breathing" Type="int" Nullable="false" />
+    <Property Name="height" Type="float" />
+    <Property Name="weight" Type="float" />
+    <Property Name="temperature" Type="float" />
+    <Property Name="breathing" Type="int" />
     <Property Name="symptom" Type="nvarchar" MaxLength="510" />
-    <Property Name="veins" Type="int" Nullable="false" />
+    <Property Name="veins" Type="int" />
+    <Property Name="bloodPressure" Type="int" />
+    <Property Name="preliminaryDiagnosis" Type="nvarchar" MaxLength="510" />
+    <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
+    <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
     <Property Name="status" Type="tinyint" Nullable="false" />
-    <Property Name="createdAt" Type="date" Nullable="false" />
+    <Property Name="createdAt" Type="datetime" />
   </EntityType>
   <EntityType Name="MedicineGroups">
     <Key>
@@ -81,7 +84,7 @@
     <Property Name="shape" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
-    <Property Name="medicineGroupID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineGroupName" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Patients">
     <Key>
@@ -89,8 +92,8 @@
     </Key>
     <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="patientJob" Type="nvarchar" MaxLength="255" />
-    <Property Name="healthInsurance#" Type="varchar" MaxLength="20" />
     <Property Name="reason" Type="nvarchar" MaxLength="500" />
+    <Property Name="healthInsurance" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Pay">
     <Key>
@@ -126,13 +129,11 @@
   </EntityType>
   <EntityType Name="Prescription_Medicine">
     <Key>
-      <PropertyRef Name="_id" />
       <PropertyRef Name="prescriptionID" />
-      <PropertyRef Name="medicineID" />
+      <PropertyRef Name="medicineName" />
     </Key>
-    <Property Name="_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="medicineID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineName" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="quanlity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Prescriptions">
@@ -141,7 +142,7 @@
     </Key>
     <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="descriptionPrescription" Type="nvarchar" MaxLength="500" />
-    <Property Name="createdAt" Type="datetime" Nullable="false" />
+    <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
     <Property Name="status" Type="tinyint" Nullable="false" />
   </EntityType>
@@ -162,13 +163,6 @@
     </Key>
     <Property Name="relativeID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Roles">
-    <Key>
-      <PropertyRef Name="roleID" />
-    </Key>
-    <Property Name="roleID" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="roleName" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Services">
     <Key>
@@ -193,6 +187,29 @@
     <Property Name="quantity" Type="tinyint" />
     <Property Name="status" Type="tinyint" Nullable="false" />
     <Property Name="createdAt" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_CreatedPrescription_New' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_CreatedPrescription_New">
+    <Key>
+      <PropertyRef Name="prescriptionID" />
+      <PropertyRef Name="medicineID" />
+      <PropertyRef Name="medicineName" />
+      <PropertyRef Name="shape" />
+      <PropertyRef Name="expiry" />
+      <PropertyRef Name="count" />
+      <PropertyRef Name="quanlity" />
+    </Key>
+    <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="medicineGroupName" Type="nvarchar" MaxLength="255" />
+    <Property Name="shape" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="255" />
+    <Property Name="medicinePrice" Type="int" />
+    <Property Name="expiry" Type="int" Nullable="false" />
+    <Property Name="count" Type="int" Nullable="false" />
+    <Property Name="quanlity" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'QLHSBA.dbo.View_Doctor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -220,6 +237,52 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Doctor' does not have a primary ke
     <Property Name="updatedAt" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_Examination' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Examination">
+    <Key>
+      <PropertyRef Name="examinateID" />
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="tenBenhNhan" />
+      <PropertyRef Name="hoBenhNhan" />
+      <PropertyRef Name="employeeID" />
+      <PropertyRef Name="tenBacSi" />
+      <PropertyRef Name="hoBacSi" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="examinateID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="tenBenhNhan" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="hoBenhNhan" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="tenBacSi" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="hoBacSi" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="height" Type="float" />
+    <Property Name="weight" Type="float" />
+    <Property Name="temperature" Type="float" />
+    <Property Name="breathing" Type="int" />
+    <Property Name="symptom" Type="nvarchar" MaxLength="510" />
+    <Property Name="veins" Type="int" />
+    <Property Name="bloodPressure" Type="int" />
+    <Property Name="preliminaryDiagnosis" Type="nvarchar" MaxLength="510" />
+    <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
+    <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_MedicineGroup_ConvertID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_MedicineGroup_ConvertID">
+    <Key>
+      <PropertyRef Name="medicineGroupID" />
+      <PropertyRef Name="medicineGroupName" />
+    </Key>
+    <Property Name="medicineGroupID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineGroupName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="updatedAt" Type="datetime" />
+    <Property Name="ConvertID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'QLHSBA.dbo.View_Patients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="View_Patients">
     <Key>
@@ -240,7 +303,33 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Patients' does not have a primary 
     <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="cardID" Type="varchar" MaxLength="15" />
     <Property Name="patientJob" Type="nvarchar" MaxLength="255" />
-    <Property Name="healthInsurance#" Type="varchar" MaxLength="20" />
+    <Property Name="healthInsurance" Type="varchar" MaxLength="20" />
+    <Property Name="reason" Type="nvarchar" MaxLength="500" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="updatedAt" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_Patients_Wait' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Patients_Wait">
+    <Key>
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="patientFirstName" />
+      <PropertyRef Name="patientLastname" />
+      <PropertyRef Name="sex" />
+      <PropertyRef Name="birthDay" />
+      <PropertyRef Name="address" />
+      <PropertyRef Name="phone" />
+    </Key>
+    <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="patientFirstName" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="patientLastname" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="sex" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="birthDay" Type="date" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="510" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="cardID" Type="varchar" MaxLength="15" />
+    <Property Name="patientJob" Type="nvarchar" MaxLength="255" />
+    <Property Name="healthInsurance" Type="varchar" MaxLength="20" />
     <Property Name="reason" Type="nvarchar" MaxLength="500" />
     <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
@@ -270,6 +359,26 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_UsingService' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_UsingService">
+    <Key>
+      <PropertyRef Name="usingServiceID" />
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="serviceID" />
+      <PropertyRef Name="serviceName" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="usingServiceID" Type="int" Nullable="false" />
+    <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="serviceID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="serviceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="servicePrice" Type="int" />
+    <Property Name="quantity" Type="tinyint" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="totalPay" Type="int" />
+    <Property Name="createdAt" Type="datetime" />
+  </EntityType>
   <Association Name="belongDepartment">
     <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -290,7 +399,7 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
         <PropertyRef Name="employeeID" />
       </Principal>
       <Dependent Role="CreatedPrescription">
-        <PropertyRef Name="patientID" />
+        <PropertyRef Name="employeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -366,30 +475,12 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Medicine_MedicineGroup_FK">
-    <End Role="MedicineGroups" Type="Self.MedicineGroups" Multiplicity="1" />
-    <End Role="Medicines" Type="Self.Medicines" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MedicineGroups">
-        <PropertyRef Name="medicineGroupID" />
-      </Principal>
-      <Dependent Role="Medicines">
-        <PropertyRef Name="medicineGroupID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Medicine_Prescription_FK">
-    <End Role="Medicines" Type="Self.Medicines" Multiplicity="1" />
-    <End Role="Prescription_Medicine" Type="Self.Prescription_Medicine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Medicines">
-        <PropertyRef Name="medicineID" />
-      </Principal>
-      <Dependent Role="Prescription_Medicine">
-        <PropertyRef Name="medicineID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'Medicine_MedicineGroup_FK' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Medicine_MedicineGroup_FK" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Medicine_Prescription_FK" />-->
   <Association Name="patientExam">
     <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
     <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
@@ -474,18 +565,6 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="roleFkey">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-    <End Role="Account" Type="Self.Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="roleID" />
-      </Principal>
-      <Dependent Role="Account">
-        <PropertyRef Name="role" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="sUsingFKEY">
     <End Role="Services" Type="Self.Services" Multiplicity="1" />
     <End Role="UsingService" Type="Self.UsingService" Multiplicity="*" />
@@ -502,42 +581,134 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <Parameter Name="departmentID" Type="varchar" Mode="In" />
   </Function>
   <Function Name="FindAllDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="FindAllPatientWait" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="FindAllStaff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="func_Auto_departmentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="departmentID" Type="varchar" Mode="In" />
+  <Function Name="FindDepartmentNameByDoctorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="doctorID" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="func_Auto_examinateID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="examinateID" Type="varchar" Mode="In" />
+  <Function Name="FindFullNameDoctorByDoctorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="doctorID" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="func_Auto_medicineGroupID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="medicineGroupID" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="func_Auto_medicineID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="medicineid" Type="varchar" Mode="In" />
-  </Function>
+  <Function Name="func_Auto_departmentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="func_Auto_examinateID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="func_Auto_medicineGroupID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="func_Auto_medicineID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
   <Function Name="func_Auto_PeopleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
     <Parameter Name="role" Type="tinyint" Mode="In" />
   </Function>
-  <Function Name="func_Auto_prescriptionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+  <Function Name="func_Auto_prescriptionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="func_Auto_ReceiptID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="func_Auto_serviceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
+  <Function Name="func_ConvertID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="lenObject" Type="int" Mode="In" />
   </Function>
-  <Function Name="func_Auto_ReceiptID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="receiptid" Type="varchar" Mode="In" />
+  <Function Name="func_FullName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="peopleID" Type="varchar" Mode="In" />
   </Function>
-  <Function Name="func_Auto_serviceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-    <Parameter Name="serviceid" Type="varchar" Mode="In" />
+  <Function Name="func_getExamHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="examinateID" Type="varchar" MaxLength="20" />
+          <Property Name="patientID" Type="varchar" MaxLength="20" />
+          <Property Name="tenBenhNhan" Type="nvarchar" MaxLength="32" />
+          <Property Name="hoBenhNhan" Type="nvarchar" MaxLength="32" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" />
+          <Property Name="tenBacSi" Type="nvarchar" MaxLength="32" />
+          <Property Name="hoBacSi" Type="nvarchar" MaxLength="32" />
+          <Property Name="height" Type="float" />
+          <Property Name="weight" Type="float" />
+          <Property Name="temperature" Type="float" />
+          <Property Name="breathing" Type="int" />
+          <Property Name="symptom" Type="nvarchar" MaxLength="510" />
+          <Property Name="veins" Type="int" />
+          <Property Name="bloodPressure" Type="int" />
+          <Property Name="preliminaryDiagnosis" Type="nvarchar" MaxLength="510" />
+          <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
+          <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
+          <Property Name="createdAt" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
   </Function>
+  <Function Name="func_getExamWithID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="examID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="examinateID" Type="varchar" MaxLength="20" />
+          <Property Name="patientID" Type="varchar" MaxLength="20" />
+          <Property Name="tenBenhNhan" Type="nvarchar" MaxLength="32" />
+          <Property Name="hoBenhNhan" Type="nvarchar" MaxLength="32" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" />
+          <Property Name="tenBacSi" Type="nvarchar" MaxLength="32" />
+          <Property Name="hoBacSi" Type="nvarchar" MaxLength="32" />
+          <Property Name="height" Type="float" />
+          <Property Name="weight" Type="float" />
+          <Property Name="temperature" Type="float" />
+          <Property Name="breathing" Type="int" />
+          <Property Name="symptom" Type="nvarchar" MaxLength="510" />
+          <Property Name="veins" Type="int" />
+          <Property Name="bloodPressure" Type="int" />
+          <Property Name="preliminaryDiagnosis" Type="nvarchar" MaxLength="510" />
+          <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
+          <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
+          <Property Name="createdAt" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="func_getListService_notYet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="usingServiceID" Type="int" />
+          <Property Name="patientID" Type="varchar" MaxLength="20" />
+          <Property Name="serviceID" Type="varchar" MaxLength="20" />
+          <Property Name="serviceName" Type="nvarchar" MaxLength="255" />
+          <Property Name="unitPrice" Type="int" />
+          <Property Name="quantity" Type="tinyint" />
+          <Property Name="status" Type="tinyint" />
+          <Property Name="payTotal" Type="int" />
+          <Property Name="createdAt" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="func_GetPrescriptionID_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
   <Function Name="func_getRelatives" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="patientID" Type="varchar" Mode="In" />
     <ReturnType>
       <CollectionType>
         <RowType>
           <Property Name="relativeID" Type="varchar" MaxLength="20" />
-          <Property Name="firstName" Type="varchar" MaxLength="32" />
-          <Property Name="lastName" Type="varchar" MaxLength="32" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="32" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="32" />
         </RowType>
       </CollectionType>
     </ReturnType>
+  </Function>
+  <Function Name="func_getTotalPay_usingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="func_listPatient_UsingService_toDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="patientID" Type="varchar" MaxLength="20" />
+          <Property Name="patientFirstName" Type="nvarchar" MaxLength="32" />
+          <Property Name="patientLastname" Type="nvarchar" MaxLength="32" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="func_UpdateQuanlityMedicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="quanlity" Type="int" Mode="In" />
   </Function>
   <Function Name="InsertDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="departmentName" Type="nvarchar" Mode="In" />
@@ -561,7 +732,7 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <Parameter Name="phone" Type="varchar" Mode="In" />
     <Parameter Name="cardID" Type="varchar" Mode="In" />
     <Parameter Name="patientJob" Type="nvarchar" Mode="In" />
-    <Parameter Name="healthInsurance_" Type="varchar" Mode="In" />
+    <Parameter Name="healthInsurance" Type="varchar" Mode="In" />
     <Parameter Name="reason" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="InsertRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -574,6 +745,10 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <Parameter Name="cardID" Type="varchar" Mode="In" />
     <Parameter Name="patientID" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="InsertRelative_Exist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="relativeID" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="InsertStaff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="employeeFirstName" Type="nvarchar" Mode="In" />
     <Parameter Name="employeeLastname" Type="nvarchar" Mode="In" />
@@ -583,6 +758,100 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <Parameter Name="phone" Type="varchar" Mode="In" />
     <Parameter Name="cardID" Type="varchar" Mode="In" />
     <Parameter Name="departmentID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_createNewNullExamination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="serviceID" Type="varchar" Mode="In" />
+    <Parameter Name="quantity" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="proc_UpdateUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usingServiceID" Type="varchar" Mode="In" />
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="serviceID" Type="varchar" Mode="In" />
+    <Parameter Name="quantity" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spCountPatientsWait" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spDeleteMedicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDeleteMedicineGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineGroupID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDeletePrescription_Medicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spExaminateIDNext" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spFindAllMedicine1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spFindAllMedicine1ByMedicineName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spFindAllMedicineGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spFindAllPrescription_Medicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetPrescriptionID_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spInsertExamination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
+    <Parameter Name="height" Type="float" Mode="In" />
+    <Parameter Name="weight" Type="float" Mode="In" />
+    <Parameter Name="temperature" Type="float" Mode="In" />
+    <Parameter Name="breathing" Type="int" Mode="In" />
+    <Parameter Name="symptom" Type="nvarchar" Mode="In" />
+    <Parameter Name="veins" Type="int" Mode="In" />
+    <Parameter Name="bloodPressure" Type="int" Mode="In" />
+    <Parameter Name="preliminaryDiagnosis" Type="nvarchar" Mode="In" />
+    <Parameter Name="finalDiagnosis" Type="nvarchar" Mode="In" />
+    <Parameter Name="treatmentDirection" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertMedicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="unit" Type="nvarchar" Mode="In" />
+    <Parameter Name="medicinePrice" Type="int" Mode="In" />
+    <Parameter Name="expiry" Type="int" Mode="In" />
+    <Parameter Name="count" Type="int" Mode="In" />
+    <Parameter Name="shape" Type="nvarchar" Mode="In" />
+    <Parameter Name="medicineGroupName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertMedicineGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineGroupName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertPrescription_Medicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="quanlity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertPrescription_Null" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spUpdateMedicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="unit" Type="nvarchar" Mode="In" />
+    <Parameter Name="medicinePrice" Type="int" Mode="In" />
+    <Parameter Name="expiry" Type="int" Mode="In" />
+    <Parameter Name="count" Type="int" Mode="In" />
+    <Parameter Name="shape" Type="nvarchar" Mode="In" />
+    <Parameter Name="medicineGroupName" Type="nvarchar" Mode="In" />
+    <Parameter Name="medicineID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spUpdateMedicineGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="medicineGroupID" Type="varchar" Mode="In" />
+    <Parameter Name="medicineGroupName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spUpdatePrescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+    <Parameter Name="descriptionPrescription" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spUpdatePrescription_Medicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prescriptionID" Type="varchar" Mode="In" />
+    <Parameter Name="medicineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="quanlity" Type="int" Mode="In" />
   </Function>
   <Function Name="UpdateDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="departmentName" Type="nvarchar" Mode="In" />
@@ -638,9 +907,22 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <EntitySet Name="Prescriptions" EntityType="Self.Prescriptions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Receipts" EntityType="Self.Receipts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Relatives" EntityType="Self.Relatives" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsingService" EntityType="Self.UsingService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_CreatedPrescription_New" EntityType="Self.View_CreatedPrescription_New" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_CreatedPrescription_New].[prescriptionID] AS [prescriptionID], 
+    [View_CreatedPrescription_New].[medicineID] AS [medicineID], 
+    [View_CreatedPrescription_New].[medicineName] AS [medicineName], 
+    [View_CreatedPrescription_New].[medicineGroupName] AS [medicineGroupName], 
+    [View_CreatedPrescription_New].[shape] AS [shape], 
+    [View_CreatedPrescription_New].[unit] AS [unit], 
+    [View_CreatedPrescription_New].[medicinePrice] AS [medicinePrice], 
+    [View_CreatedPrescription_New].[expiry] AS [expiry], 
+    [View_CreatedPrescription_New].[count] AS [count], 
+    [View_CreatedPrescription_New].[quanlity] AS [quanlity]
+    FROM [dbo].[View_CreatedPrescription_New] AS [View_CreatedPrescription_New]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="View_Doctor" EntityType="Self.View_Doctor" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [View_Doctor].[doctorID] AS [doctorID], 
@@ -656,6 +938,38 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     [View_Doctor].[updatedAt] AS [updatedAt]
     FROM [dbo].[View_Doctor] AS [View_Doctor]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="View_Examination" EntityType="Self.View_Examination" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Examination].[examinateID] AS [examinateID], 
+    [View_Examination].[patientID] AS [patientID], 
+    [View_Examination].[tenBenhNhan] AS [tenBenhNhan], 
+    [View_Examination].[hoBenhNhan] AS [hoBenhNhan], 
+    [View_Examination].[employeeID] AS [employeeID], 
+    [View_Examination].[tenBacSi] AS [tenBacSi], 
+    [View_Examination].[hoBacSi] AS [hoBacSi], 
+    [View_Examination].[height] AS [height], 
+    [View_Examination].[weight] AS [weight], 
+    [View_Examination].[temperature] AS [temperature], 
+    [View_Examination].[breathing] AS [breathing], 
+    [View_Examination].[symptom] AS [symptom], 
+    [View_Examination].[veins] AS [veins], 
+    [View_Examination].[bloodPressure] AS [bloodPressure], 
+    [View_Examination].[preliminaryDiagnosis] AS [preliminaryDiagnosis], 
+    [View_Examination].[finalDiagnosis] AS [finalDiagnosis], 
+    [View_Examination].[treatmentDirection] AS [treatmentDirection], 
+    [View_Examination].[createdAt] AS [createdAt], 
+    [View_Examination].[status] AS [status]
+    FROM [dbo].[View_Examination] AS [View_Examination]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_MedicineGroup_ConvertID" EntityType="Self.View_MedicineGroup_ConvertID" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_MedicineGroup_ConvertID].[medicineGroupID] AS [medicineGroupID], 
+    [View_MedicineGroup_ConvertID].[medicineGroupName] AS [medicineGroupName], 
+    [View_MedicineGroup_ConvertID].[createdAt] AS [createdAt], 
+    [View_MedicineGroup_ConvertID].[updatedAt] AS [updatedAt], 
+    [View_MedicineGroup_ConvertID].[ConvertID] AS [ConvertID]
+    FROM [dbo].[View_MedicineGroup_ConvertID] AS [View_MedicineGroup_ConvertID]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="View_Patients" EntityType="Self.View_Patients" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [View_Patients].[patientID] AS [patientID], 
@@ -667,11 +981,28 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     [View_Patients].[phone] AS [phone], 
     [View_Patients].[cardID] AS [cardID], 
     [View_Patients].[patientJob] AS [patientJob], 
-    [View_Patients].[healthInsurance#] AS [healthInsurance#], 
+    [View_Patients].[healthInsurance] AS [healthInsurance], 
     [View_Patients].[reason] AS [reason], 
     [View_Patients].[createdAt] AS [createdAt], 
     [View_Patients].[updatedAt] AS [updatedAt]
     FROM [dbo].[View_Patients] AS [View_Patients]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Patients_Wait" EntityType="Self.View_Patients_Wait" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Patients_Wait].[patientID] AS [patientID], 
+    [View_Patients_Wait].[patientFirstName] AS [patientFirstName], 
+    [View_Patients_Wait].[patientLastname] AS [patientLastname], 
+    [View_Patients_Wait].[sex] AS [sex], 
+    [View_Patients_Wait].[birthDay] AS [birthDay], 
+    [View_Patients_Wait].[address] AS [address], 
+    [View_Patients_Wait].[phone] AS [phone], 
+    [View_Patients_Wait].[cardID] AS [cardID], 
+    [View_Patients_Wait].[patientJob] AS [patientJob], 
+    [View_Patients_Wait].[healthInsurance] AS [healthInsurance], 
+    [View_Patients_Wait].[reason] AS [reason], 
+    [View_Patients_Wait].[createdAt] AS [createdAt], 
+    [View_Patients_Wait].[updatedAt] AS [updatedAt]
+    FROM [dbo].[View_Patients_Wait] AS [View_Patients_Wait]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="View_Staff" EntityType="Self.View_Staff" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -687,6 +1018,19 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     [View_Staff].[createdAt] AS [createdAt], 
     [View_Staff].[updatedAt] AS [updatedAt]
     FROM [dbo].[View_Staff] AS [View_Staff]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_UsingService" EntityType="Self.View_UsingService" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_UsingService].[usingServiceID] AS [usingServiceID], 
+    [View_UsingService].[patientID] AS [patientID], 
+    [View_UsingService].[serviceID] AS [serviceID], 
+    [View_UsingService].[serviceName] AS [serviceName], 
+    [View_UsingService].[servicePrice] AS [servicePrice], 
+    [View_UsingService].[quantity] AS [quantity], 
+    [View_UsingService].[status] AS [status], 
+    [View_UsingService].[totalPay] AS [totalPay], 
+    [View_UsingService].[createdAt] AS [createdAt]
+    FROM [dbo].[View_UsingService] AS [View_UsingService]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="belongDepartment" Association="Self.belongDepartment">
       <End Role="Departments" EntitySet="Departments" />
@@ -720,14 +1064,6 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
       <End Role="People" EntitySet="People" />
       <End Role="Relatives" EntitySet="Relatives" />
     </AssociationSet>
-    <AssociationSet Name="Medicine_MedicineGroup_FK" Association="Self.Medicine_MedicineGroup_FK">
-      <End Role="MedicineGroups" EntitySet="MedicineGroups" />
-      <End Role="Medicines" EntitySet="Medicines" />
-    </AssociationSet>
-    <AssociationSet Name="Medicine_Prescription_FK" Association="Self.Medicine_Prescription_FK">
-      <End Role="Medicines" EntitySet="Medicines" />
-      <End Role="Prescription_Medicine" EntitySet="Prescription_Medicine" />
-    </AssociationSet>
     <AssociationSet Name="patientExam" Association="Self.patientExam">
       <End Role="Patients" EntitySet="Patients" />
       <End Role="Examination" EntitySet="Examination" />
@@ -755,10 +1091,6 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Staff' does not have a primary key
     <AssociationSet Name="receiptPay" Association="Self.receiptPay">
       <End Role="Receipts" EntitySet="Receipts" />
       <End Role="Pay" EntitySet="Pay" />
-    </AssociationSet>
-    <AssociationSet Name="roleFkey" Association="Self.roleFkey">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Account" EntitySet="Account" />
     </AssociationSet>
     <AssociationSet Name="sUsingFKEY" Association="Self.sUsingFKEY">
       <End Role="Services" EntitySet="Services" />

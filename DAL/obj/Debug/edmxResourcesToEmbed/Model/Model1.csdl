@@ -1,14 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QLHSBAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="func_getExamHistory_Result">
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tenBenhNhan" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="hoBenhNhan" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tenBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="hoBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="height" Type="Double" />
+    <Property Name="weight" Type="Double" />
+    <Property Name="temperature" Type="Double" />
+    <Property Name="breathing" Type="Int32" />
+    <Property Name="symptom" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="veins" Type="Int32" />
+    <Property Name="bloodPressure" Type="Int32" />
+    <Property Name="preliminaryDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="createdAt" Type="DateTime" />
+  </ComplexType>
+  <ComplexType Name="func_getExamWithID_Result">
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tenBenhNhan" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="hoBenhNhan" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tenBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="hoBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="height" Type="Double" />
+    <Property Name="weight" Type="Double" />
+    <Property Name="temperature" Type="Double" />
+    <Property Name="breathing" Type="Int32" />
+    <Property Name="symptom" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="veins" Type="Int32" />
+    <Property Name="bloodPressure" Type="Int32" />
+    <Property Name="preliminaryDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="createdAt" Type="DateTime" />
+  </ComplexType>
+  <ComplexType Name="func_getListService_notYet_Result">
+    <Property Name="usingServiceID" Type="Int32" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="serviceID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="serviceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="unitPrice" Type="Int32" />
+    <Property Name="quantity" Type="Byte" />
+    <Property Name="status" Type="Byte" />
+    <Property Name="payTotal" Type="Int32" />
+    <Property Name="createdAt" Type="DateTime" />
+  </ComplexType>
+  <ComplexType Name="func_getRelatives_Result">
+    <Property Name="relativeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="firstName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="func_listPatient_UsingService_toDay_Result">
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="patientFirstName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="patientLastname" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+  </ComplexType>
   <EntityType Name="Account">
     <Key>
-      <PropertyRef Name="accountId" />
+      <PropertyRef Name="accountName" />
     </Key>
-    <Property Name="accountId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="status" Type="Byte" />
-    <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Role1" Relationship="Self.roleFkey" FromRole="Account" ToRole="Roles" />
+    <Property Name="accountName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="CreatedPrescription">
     <Key>
@@ -21,7 +81,6 @@
     <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="quanlity" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Employee" Relationship="Self.CreatedPrescription_Employee_FK" FromRole="CreatedPrescription" ToRole="Employees" />
     <NavigationProperty Name="Patient" Relationship="Self.CreatedPrescription_Patient_FK" FromRole="CreatedPrescription" ToRole="Patients" />
     <NavigationProperty Name="Prescription" Relationship="Self.CreatedPrescription_Prescription_FK" FromRole="CreatedPrescription" ToRole="Prescriptions" />
@@ -59,14 +118,18 @@
     <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="height" Type="Double" Nullable="false" />
-    <Property Name="weight" Type="Double" Nullable="false" />
-    <Property Name="temperature" Type="Double" Nullable="false" />
-    <Property Name="breathing" Type="Int32" Nullable="false" />
+    <Property Name="height" Type="Double" />
+    <Property Name="weight" Type="Double" />
+    <Property Name="temperature" Type="Double" />
+    <Property Name="breathing" Type="Int32" />
     <Property Name="symptom" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
-    <Property Name="veins" Type="Int32" Nullable="false" />
+    <Property Name="veins" Type="Int32" />
+    <Property Name="bloodPressure" Type="Int32" />
+    <Property Name="preliminaryDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Byte" Nullable="false" />
-    <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Employee" Relationship="Self.employeeExam" FromRole="Examination" ToRole="Employees" />
     <NavigationProperty Name="Patient" Relationship="Self.patientExam" FromRole="Examination" ToRole="Patients" />
   </EntityType>
@@ -78,7 +141,6 @@
     <Property Name="medicineGroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Medicines" Relationship="Self.Medicine_MedicineGroup_FK" FromRole="MedicineGroups" ToRole="Medicines" />
   </EntityType>
   <EntityType Name="Medicine">
     <Key>
@@ -94,9 +156,7 @@
     <Property Name="shape" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
-    <Property Name="medicineGroupID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="MedicineGroup" Relationship="Self.Medicine_MedicineGroup_FK" FromRole="Medicines" ToRole="MedicineGroups" />
-    <NavigationProperty Name="Prescription_Medicine" Relationship="Self.Medicine_Prescription_FK" FromRole="Medicines" ToRole="Prescription_Medicine" />
+    <Property Name="medicineGroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -104,8 +164,8 @@
     </Key>
     <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="patientJob" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="healthInsurance_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="healthInsurance" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CreatedPrescriptions" Relationship="Self.CreatedPrescription_Patient_FK" FromRole="Patients" ToRole="CreatedPrescription" />
     <NavigationProperty Name="Examinations" Relationship="Self.patientExam" FromRole="Patients" ToRole="Examination" />
     <NavigationProperty Name="Pays" Relationship="Self.patientPay" FromRole="Patients" ToRole="Pay" />
@@ -153,15 +213,12 @@
   </EntityType>
   <EntityType Name="Prescription_Medicine">
     <Key>
-      <PropertyRef Name="C_id" />
       <PropertyRef Name="prescriptionID" />
-      <PropertyRef Name="medicineID" />
+      <PropertyRef Name="medicineName" />
     </Key>
-    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="medicineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medicineName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="quanlity" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Medicine" Relationship="Self.Medicine_Prescription_FK" FromRole="Prescription_Medicine" ToRole="Medicines" />
     <NavigationProperty Name="Prescription" Relationship="Self.Prescription_Medicine_FK" FromRole="Prescription_Medicine" ToRole="Prescriptions" />
   </EntityType>
   <EntityType Name="Prescription">
@@ -170,7 +227,7 @@
     </Key>
     <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descriptionPrescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
     <Property Name="status" Type="Byte" Nullable="false" />
     <NavigationProperty Name="CreatedPrescriptions" Relationship="Self.CreatedPrescription_Prescription_FK" FromRole="Prescriptions" ToRole="CreatedPrescription" />
@@ -186,14 +243,6 @@
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Pays" Relationship="Self.receiptPay" FromRole="Receipts" ToRole="Pay" />
-  </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="roleID" />
-    </Key>
-    <Property Name="roleID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="roleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Accounts" Relationship="Self.roleFkey" FromRole="Roles" ToRole="Account" />
   </EntityType>
   <EntityType Name="Service">
     <Key>
@@ -222,6 +271,27 @@
     <NavigationProperty Name="Patient" Relationship="Self.pUsingFKEY" FromRole="UsingService" ToRole="Patients" />
     <NavigationProperty Name="Service" Relationship="Self.sUsingFKEY" FromRole="UsingService" ToRole="Services" />
   </EntityType>
+  <EntityType Name="View_CreatedPrescription_New">
+    <Key>
+      <PropertyRef Name="prescriptionID" />
+      <PropertyRef Name="medicineID" />
+      <PropertyRef Name="medicineName" />
+      <PropertyRef Name="shape" />
+      <PropertyRef Name="expiry" />
+      <PropertyRef Name="count" />
+      <PropertyRef Name="quanlity" />
+    </Key>
+    <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medicineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medicineName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="medicineGroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="shape" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="unit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="medicinePrice" Type="Int32" />
+    <Property Name="expiry" Type="Int32" Nullable="false" />
+    <Property Name="count" Type="Int32" Nullable="false" />
+    <Property Name="quanlity" Type="Int32" Nullable="false" />
+  </EntityType>
   <EntityType Name="View_Doctor">
     <Key>
       <PropertyRef Name="doctorID" />
@@ -245,6 +315,48 @@
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="View_Examination">
+    <Key>
+      <PropertyRef Name="examinateID" />
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="tenBenhNhan" />
+      <PropertyRef Name="hoBenhNhan" />
+      <PropertyRef Name="employeeID" />
+      <PropertyRef Name="tenBacSi" />
+      <PropertyRef Name="hoBacSi" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenBenhNhan" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hoBenhNhan" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hoBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="height" Type="Double" />
+    <Property Name="weight" Type="Double" />
+    <Property Name="temperature" Type="Double" />
+    <Property Name="breathing" Type="Int32" />
+    <Property Name="symptom" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="veins" Type="Int32" />
+    <Property Name="bloodPressure" Type="Int32" />
+    <Property Name="preliminaryDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_MedicineGroup_ConvertID">
+    <Key>
+      <PropertyRef Name="medicineGroupID" />
+      <PropertyRef Name="medicineGroupName" />
+    </Key>
+    <Property Name="medicineGroupID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medicineGroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
+    <Property Name="updatedAt" Type="DateTime" Precision="3" />
+    <Property Name="ConvertID" Type="Int32" />
+  </EntityType>
   <EntityType Name="View_Patients">
     <Key>
       <PropertyRef Name="patientID" />
@@ -264,7 +376,31 @@
     <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cardID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="patientJob" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="healthInsurance_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="healthInsurance" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
+    <Property Name="updatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="View_Patients_Wait">
+    <Key>
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="patientFirstName" />
+      <PropertyRef Name="patientLastname" />
+      <PropertyRef Name="sex" />
+      <PropertyRef Name="birthDay" />
+      <PropertyRef Name="address" />
+      <PropertyRef Name="phone" />
+    </Key>
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patientFirstName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patientLastname" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="birthDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="address" Type="String" MaxLength="510" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cardID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="patientJob" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="healthInsurance" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
@@ -292,18 +428,24 @@
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
   </EntityType>
-  <Association Name="roleFkey">
-    <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
-    <End Role="Account" Type="Self.Account" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="roleID" />
-      </Principal>
-      <Dependent Role="Account">
-        <PropertyRef Name="role" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="View_UsingService">
+    <Key>
+      <PropertyRef Name="usingServiceID" />
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="serviceID" />
+      <PropertyRef Name="serviceName" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="usingServiceID" Type="Int32" Nullable="false" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serviceID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serviceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="servicePrice" Type="Int32" />
+    <Property Name="quantity" Type="Byte" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+    <Property Name="totalPay" Type="Int32" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
+  </EntityType>
   <Association Name="CreatedPrescription_Employee_FK">
     <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
     <End Role="CreatedPrescription" Type="Self.CreatedPrescription" Multiplicity="*" />
@@ -312,7 +454,7 @@
         <PropertyRef Name="employeeID" />
       </Principal>
       <Dependent Role="CreatedPrescription">
-        <PropertyRef Name="patientID" />
+        <PropertyRef Name="employeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -397,30 +539,6 @@
       </Principal>
       <Dependent Role="Examination">
         <PropertyRef Name="patientID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Medicine_MedicineGroup_FK">
-    <End Role="MedicineGroups" Type="Self.MedicineGroup" Multiplicity="1" />
-    <End Role="Medicines" Type="Self.Medicine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MedicineGroups">
-        <PropertyRef Name="medicineGroupID" />
-      </Principal>
-      <Dependent Role="Medicines">
-        <PropertyRef Name="medicineGroupID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Medicine_Prescription_FK">
-    <End Role="Medicines" Type="Self.Medicine" Multiplicity="1" />
-    <End Role="Prescription_Medicine" Type="Self.Prescription_Medicine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Medicines">
-        <PropertyRef Name="medicineID" />
-      </Principal>
-      <Dependent Role="Prescription_Medicine">
-        <PropertyRef Name="medicineID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -514,16 +632,16 @@
     <EntitySet Name="Prescription_Medicine" EntityType="Self.Prescription_Medicine" />
     <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
     <EntitySet Name="Receipts" EntityType="Self.Receipt" />
-    <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="Services" EntityType="Self.Service" />
     <EntitySet Name="UsingServices" EntityType="Self.UsingService" />
+    <EntitySet Name="View_CreatedPrescription_New" EntityType="Self.View_CreatedPrescription_New" />
     <EntitySet Name="View_Doctor" EntityType="Self.View_Doctor" />
+    <EntitySet Name="View_Examination" EntityType="Self.View_Examination" />
+    <EntitySet Name="View_MedicineGroup_ConvertID" EntityType="Self.View_MedicineGroup_ConvertID" />
     <EntitySet Name="View_Patients" EntityType="Self.View_Patients" />
+    <EntitySet Name="View_Patients_Wait" EntityType="Self.View_Patients_Wait" />
     <EntitySet Name="View_Staff" EntityType="Self.View_Staff" />
-    <AssociationSet Name="roleFkey" Association="Self.roleFkey">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Account" EntitySet="Accounts" />
-    </AssociationSet>
+    <EntitySet Name="View_UsingService" EntityType="Self.View_UsingService" />
     <AssociationSet Name="CreatedPrescription_Employee_FK" Association="Self.CreatedPrescription_Employee_FK">
       <End Role="Employees" EntitySet="Employees" />
       <End Role="CreatedPrescription" EntitySet="CreatedPrescriptions" />
@@ -556,14 +674,6 @@
       <End Role="Patients" EntitySet="Patients" />
       <End Role="Examination" EntitySet="Examinations" />
     </AssociationSet>
-    <AssociationSet Name="Medicine_MedicineGroup_FK" Association="Self.Medicine_MedicineGroup_FK">
-      <End Role="MedicineGroups" EntitySet="MedicineGroups" />
-      <End Role="Medicines" EntitySet="Medicines" />
-    </AssociationSet>
-    <AssociationSet Name="Medicine_Prescription_FK" Association="Self.Medicine_Prescription_FK">
-      <End Role="Medicines" EntitySet="Medicines" />
-      <End Role="Prescription_Medicine" EntitySet="Prescription_Medicine" />
-    </AssociationSet>
     <AssociationSet Name="patientPay" Association="Self.patientPay">
       <End Role="Patients" EntitySet="Patients" />
       <End Role="Pay" EntitySet="Pays" />
@@ -592,11 +702,31 @@
       <End Role="People" EntitySet="People" />
       <End Role="People1" EntitySet="People" />
     </AssociationSet>
+    <FunctionImport Name="func_getExamHistory" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getExamHistory_Result)">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="func_getExamWithID" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getExamWithID_Result)">
+      <Parameter Name="examID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="func_getListService_notYet" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getListService_notYet_Result)">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="func_getRelatives" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getRelatives_Result)">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="func_listPatient_UsingService_toDay" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_listPatient_UsingService_toDay_Result)" />
     <FunctionImport Name="DeleteDepartment">
       <Parameter Name="departmentID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="FindAllDoctor" ReturnType="Collection(QLHSBAModel.FindAllDoctor_Result)" />
+    <FunctionImport Name="FindAllPatientWait" ReturnType="Collection(QLHSBAModel.FindAllPatientWait_Result)" />
     <FunctionImport Name="FindAllStaff" ReturnType="Collection(QLHSBAModel.FindAllStaff_Result)" />
+    <FunctionImport Name="FindDepartmentNameByDoctorId" ReturnType="Collection(String)">
+      <Parameter Name="doctorID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FindFullNameDoctorByDoctorId" ReturnType="Collection(String)">
+      <Parameter Name="doctorID" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="InsertDepartment">
       <Parameter Name="departmentName" Mode="In" Type="String" />
     </FunctionImport>
@@ -619,7 +749,7 @@
       <Parameter Name="phone" Mode="In" Type="String" />
       <Parameter Name="cardID" Mode="In" Type="String" />
       <Parameter Name="patientJob" Mode="In" Type="String" />
-      <Parameter Name="healthInsurance_" Mode="In" Type="String" />
+      <Parameter Name="healthInsurance" Mode="In" Type="String" />
       <Parameter Name="reason" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertRelative">
@@ -632,6 +762,10 @@
       <Parameter Name="cardID" Mode="In" Type="String" />
       <Parameter Name="patientID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="InsertRelative_Exist">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="relativeID" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="InsertStaff">
       <Parameter Name="employeeFirstName" Mode="In" Type="String" />
       <Parameter Name="employeeLastname" Mode="In" Type="String" />
@@ -641,6 +775,100 @@
       <Parameter Name="phone" Mode="In" Type="String" />
       <Parameter Name="cardID" Mode="In" Type="String" />
       <Parameter Name="departmentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_createNewNullExamination">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertUsingService">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="serviceID" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UpdateUsingService">
+      <Parameter Name="usingServiceID" Mode="In" Type="String" />
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="serviceID" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spCountPatientsWait" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="spDeleteMedicine">
+      <Parameter Name="medicineID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteMedicineGroup">
+      <Parameter Name="medicineGroupID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spDeletePrescription_Medicine">
+      <Parameter Name="prescriptionID" Mode="In" Type="String" />
+      <Parameter Name="medicineName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spExaminateIDNext" ReturnType="Collection(String)" />
+    <FunctionImport Name="spFindAllMedicine1" ReturnType="Collection(QLHSBAModel.spFindAllMedicine1_Result)" />
+    <FunctionImport Name="spFindAllMedicine1ByMedicineName" ReturnType="Collection(QLHSBAModel.spFindAllMedicine1ByMedicineName_Result)">
+      <Parameter Name="medicineName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spFindAllMedicineGroup" ReturnType="Collection(QLHSBAModel.spFindAllMedicineGroup_Result)" />
+    <FunctionImport Name="spFindAllPrescription_Medicine" ReturnType="Collection(QLHSBAModel.spFindAllPrescription_Medicine_Result)">
+      <Parameter Name="prescriptionID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetPrescriptionID_New" ReturnType="Collection(String)" />
+    <FunctionImport Name="spInsertExamination">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+      <Parameter Name="height" Mode="In" Type="Double" />
+      <Parameter Name="weight" Mode="In" Type="Double" />
+      <Parameter Name="temperature" Mode="In" Type="Double" />
+      <Parameter Name="breathing" Mode="In" Type="Int32" />
+      <Parameter Name="symptom" Mode="In" Type="String" />
+      <Parameter Name="veins" Mode="In" Type="Int32" />
+      <Parameter Name="bloodPressure" Mode="In" Type="Int32" />
+      <Parameter Name="preliminaryDiagnosis" Mode="In" Type="String" />
+      <Parameter Name="finalDiagnosis" Mode="In" Type="String" />
+      <Parameter Name="treatmentDirection" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertMedicine">
+      <Parameter Name="medicineName" Mode="In" Type="String" />
+      <Parameter Name="unit" Mode="In" Type="String" />
+      <Parameter Name="medicinePrice" Mode="In" Type="Int32" />
+      <Parameter Name="expiry" Mode="In" Type="Int32" />
+      <Parameter Name="count" Mode="In" Type="Int32" />
+      <Parameter Name="shape" Mode="In" Type="String" />
+      <Parameter Name="medicineGroupName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertMedicineGroup">
+      <Parameter Name="medicineGroupName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertPrescription_Medicine">
+      <Parameter Name="prescriptionID" Mode="In" Type="String" />
+      <Parameter Name="medicineName" Mode="In" Type="String" />
+      <Parameter Name="quanlity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertPrescription_Null">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateMedicine">
+      <Parameter Name="medicineName" Mode="In" Type="String" />
+      <Parameter Name="unit" Mode="In" Type="String" />
+      <Parameter Name="medicinePrice" Mode="In" Type="Int32" />
+      <Parameter Name="expiry" Mode="In" Type="Int32" />
+      <Parameter Name="count" Mode="In" Type="Int32" />
+      <Parameter Name="shape" Mode="In" Type="String" />
+      <Parameter Name="medicineGroupName" Mode="In" Type="String" />
+      <Parameter Name="medicineID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateMedicineGroup">
+      <Parameter Name="medicineGroupID" Mode="In" Type="String" />
+      <Parameter Name="medicineGroupName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdatePrescription">
+      <Parameter Name="prescriptionID" Mode="In" Type="String" />
+      <Parameter Name="descriptionPrescription" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdatePrescription_Medicine">
+      <Parameter Name="prescriptionID" Mode="In" Type="String" />
+      <Parameter Name="medicineName" Mode="In" Type="String" />
+      <Parameter Name="quanlity" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UpdateDepartment">
       <Parameter Name="departmentName" Mode="In" Type="String" />
@@ -681,9 +909,6 @@
       <Parameter Name="patientID" Mode="In" Type="String" />
       <Parameter Name="relativeID" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="func_getRelatives" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getRelatives_Result)">
-      <Parameter Name="patientID" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="FindAllDoctor_Result">
     <Property Type="String" Name="doctorID" Nullable="false" MaxLength="20" />
@@ -695,6 +920,21 @@
     <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
     <Property Type="String" Name="cardID" Nullable="true" MaxLength="15" />
     <Property Type="String" Name="departmentName" Nullable="false" MaxLength="255" />
+    <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updatedAt" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="FindAllPatientWait_Result">
+    <Property Type="String" Name="patientID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="patientFirstName" Nullable="false" MaxLength="32" />
+    <Property Type="String" Name="patientLastname" Nullable="false" MaxLength="32" />
+    <Property Type="String" Name="sex" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="birthDay" Nullable="false" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="510" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cardID" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="patientJob" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="healthInsurance" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="reason" Nullable="true" MaxLength="500" />
     <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
     <Property Type="DateTime" Name="updatedAt" Nullable="true" Precision="23" />
   </ComplexType>
@@ -711,9 +951,46 @@
     <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
     <Property Type="DateTime" Name="updatedAt" Nullable="true" Precision="23" />
   </ComplexType>
-  <ComplexType Name="func_getRelatives_Result">
-    <Property Type="String" Name="relativeID" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="firstName" Nullable="true" MaxLength="32" />
-    <Property Type="String" Name="lastName" Nullable="true" MaxLength="32" />
+  <ComplexType Name="spFindAllMedicine1_Result">
+    <Property Type="String" Name="medicineID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="medicineName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="unit" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="medicinePrice" Nullable="true" />
+    <Property Type="Int32" Name="expiry" Nullable="false" />
+    <Property Type="Int32" Name="count" Nullable="false" />
+    <Property Type="String" Name="shape" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="medicineGroupName" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updatedAt" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spFindAllMedicine1ByMedicineName_Result">
+    <Property Type="String" Name="medicineID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="medicineName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="unit" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="medicinePrice" Nullable="true" />
+    <Property Type="Int32" Name="expiry" Nullable="false" />
+    <Property Type="Int32" Name="count" Nullable="false" />
+    <Property Type="String" Name="shape" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="medicineGroupName" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updatedAt" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spFindAllMedicineGroup_Result">
+    <Property Type="String" Name="medicineGroupID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="medicineGroupName" Nullable="false" MaxLength="255" />
+    <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="updatedAt" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spFindAllPrescription_Medicine_Result">
+    <Property Type="String" Name="prescriptionID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="medicineID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="medicineName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="medicineGroupName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="shape" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="unit" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="medicinePrice" Nullable="true" />
+    <Property Type="Int32" Name="expiry" Nullable="false" />
+    <Property Type="Int32" Name="count" Nullable="false" />
+    <Property Type="Int32" Name="quanlity" Nullable="false" />
   </ComplexType>
 </Schema>

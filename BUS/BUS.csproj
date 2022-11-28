@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10BEE057-357A-4C9D-AB3D-AD5F148D2DB9}</ProjectGuid>
+    <ProjectGuid>{C5D8FA0A-5B23-471B-A915-E603241B583A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BUS</RootNamespace>
@@ -53,7 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="basicInfoPatientBUS.cs" />
+    <Compile Include="DoctorBUS.cs" />
     <Compile Include="EmployeeBUS.cs" />
+    <Compile Include="ExaminationBUS.cs" />
     <Compile Include="Exam_uService_BUS.cs" />
     <Compile Include="impl\PatientBUS_impl.cs" />
     <Compile Include="impl\PayBUS_impl.cs" />
@@ -61,18 +63,16 @@
     <Compile Include="impl\ReceiptBUS_impl.cs" />
     <Compile Include="impl\ServiceBUS_impl.cs" />
     <Compile Include="impl\UsingServiceBUS_impl.cs" />
-    <Compile Include="iPatientBUS.cs" />
-    <Compile Include="iPayBUS.cs" />
-    <Compile Include="iPeopleBUS.cs" />
-    <Compile Include="iReceiptBUS.cs" />
-    <Compile Include="iServiceBUS.cs" />
-    <Compile Include="iUsingServiceBUS.cs" />
+    <Compile Include="MedicineBUS.cs" />
+    <Compile Include="MedicineGroupBUS.cs" />
+    <Compile Include="PatientBUS.cs" />
+    <Compile Include="PrescriptionBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewExamination_BUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{4f7cb950-1838-42ee-a0e8-d48a3f4adac1}</Project>
+      <Project>{4a040a20-03a9-4b53-ae6f-b0fc635df77e}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

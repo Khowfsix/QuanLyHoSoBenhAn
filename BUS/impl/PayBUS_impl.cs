@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BUS.impl
 {
-    public class PayBUS_impl : iPayBUS
+    public class PayBUS_impl 
     {
         public void Create(Pay obj)
         {

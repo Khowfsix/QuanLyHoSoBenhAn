@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BUS.impl
 {
-    public class ServiceBUS_impl : iServiceBUS
+    public class ServiceBUS_impl 
     {
         private QLHSBAEntities db = new QLHSBAEntities();
 

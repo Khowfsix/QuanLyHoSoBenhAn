@@ -4,7 +4,7 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="QLHSBAModel.Account">
         <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="role" ColumnName="role" />
@@ -18,7 +18,6 @@
           <ScalarProperty Name="patientID" ColumnName="patientID" />
           <ScalarProperty Name="employeeID" ColumnName="employeeID" />
           <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
-          <ScalarProperty Name="quanlity" ColumnName="quanlity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -54,6 +53,10 @@
           <ScalarProperty Name="breathing" ColumnName="breathing" />
           <ScalarProperty Name="symptom" ColumnName="symptom" />
           <ScalarProperty Name="veins" ColumnName="veins" />
+          <ScalarProperty Name="bloodPressure" ColumnName="bloodPressure" />
+          <ScalarProperty Name="preliminaryDiagnosis" ColumnName="preliminaryDiagnosis" />
+          <ScalarProperty Name="finalDiagnosis" ColumnName="finalDiagnosis" />
+          <ScalarProperty Name="treatmentDirection" ColumnName="treatmentDirection" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="createdAt" ColumnName="createdAt" />
         </MappingFragment>
@@ -82,7 +85,7 @@
           <ScalarProperty Name="shape" ColumnName="shape" />
           <ScalarProperty Name="createdAt" ColumnName="createdAt" />
           <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
-          <ScalarProperty Name="medicineGroupID" ColumnName="medicineGroupID" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -91,8 +94,8 @@
         <MappingFragment StoreEntitySet="Patients">
           <ScalarProperty Name="patientID" ColumnName="patientID" />
           <ScalarProperty Name="patientJob" ColumnName="patientJob" />
-          <ScalarProperty Name="healthInsurance_" ColumnName="healthInsurance#" />
           <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="healthInsurance" ColumnName="healthInsurance" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -130,9 +133,8 @@
     <EntitySetMapping Name="Prescription_Medicine">
       <EntityTypeMapping TypeName="QLHSBAModel.Prescription_Medicine">
         <MappingFragment StoreEntitySet="Prescription_Medicine">
-          <ScalarProperty Name="C_id" ColumnName="_id" />
           <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
-          <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+          <ScalarProperty Name="medicineName" ColumnName="medicineName" />
           <ScalarProperty Name="quanlity" ColumnName="quanlity" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -156,14 +158,6 @@
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="createdAt" ColumnName="createdAt" />
           <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="QLHSBAModel.Role">
-        <MappingFragment StoreEntitySet="Roles">
-          <ScalarProperty Name="roleID" ColumnName="roleID" />
-          <ScalarProperty Name="roleName" ColumnName="roleName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -191,6 +185,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="View_CreatedPrescription_New">
+      <EntityTypeMapping TypeName="QLHSBAModel.View_CreatedPrescription_New">
+        <MappingFragment StoreEntitySet="View_CreatedPrescription_New">
+          <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
+          <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+          <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
+          <ScalarProperty Name="shape" ColumnName="shape" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="medicinePrice" ColumnName="medicinePrice" />
+          <ScalarProperty Name="expiry" ColumnName="expiry" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="View_Doctor">
       <EntityTypeMapping TypeName="QLHSBAModel.View_Doctor">
         <MappingFragment StoreEntitySet="View_Doctor">
@@ -208,6 +218,42 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="View_Examination">
+      <EntityTypeMapping TypeName="QLHSBAModel.View_Examination">
+        <MappingFragment StoreEntitySet="View_Examination">
+          <ScalarProperty Name="examinateID" ColumnName="examinateID" />
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="tenBenhNhan" ColumnName="tenBenhNhan" />
+          <ScalarProperty Name="hoBenhNhan" ColumnName="hoBenhNhan" />
+          <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+          <ScalarProperty Name="tenBacSi" ColumnName="tenBacSi" />
+          <ScalarProperty Name="hoBacSi" ColumnName="hoBacSi" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="temperature" ColumnName="temperature" />
+          <ScalarProperty Name="breathing" ColumnName="breathing" />
+          <ScalarProperty Name="symptom" ColumnName="symptom" />
+          <ScalarProperty Name="veins" ColumnName="veins" />
+          <ScalarProperty Name="bloodPressure" ColumnName="bloodPressure" />
+          <ScalarProperty Name="preliminaryDiagnosis" ColumnName="preliminaryDiagnosis" />
+          <ScalarProperty Name="finalDiagnosis" ColumnName="finalDiagnosis" />
+          <ScalarProperty Name="treatmentDirection" ColumnName="treatmentDirection" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_MedicineGroup_ConvertID">
+      <EntityTypeMapping TypeName="QLHSBAModel.View_MedicineGroup_ConvertID">
+        <MappingFragment StoreEntitySet="View_MedicineGroup_ConvertID">
+          <ScalarProperty Name="medicineGroupID" ColumnName="medicineGroupID" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+          <ScalarProperty Name="ConvertID" ColumnName="ConvertID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="View_Patients">
       <EntityTypeMapping TypeName="QLHSBAModel.View_Patients">
         <MappingFragment StoreEntitySet="View_Patients">
@@ -220,7 +266,26 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="cardID" ColumnName="cardID" />
           <ScalarProperty Name="patientJob" ColumnName="patientJob" />
-          <ScalarProperty Name="healthInsurance_" ColumnName="healthInsurance#" />
+          <ScalarProperty Name="healthInsurance" ColumnName="healthInsurance" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Patients_Wait">
+      <EntityTypeMapping TypeName="QLHSBAModel.View_Patients_Wait">
+        <MappingFragment StoreEntitySet="View_Patients_Wait">
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="patientFirstName" ColumnName="patientFirstName" />
+          <ScalarProperty Name="patientLastname" ColumnName="patientLastname" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cardID" ColumnName="cardID" />
+          <ScalarProperty Name="patientJob" ColumnName="patientJob" />
+          <ScalarProperty Name="healthInsurance" ColumnName="healthInsurance" />
           <ScalarProperty Name="reason" ColumnName="reason" />
           <ScalarProperty Name="createdAt" ColumnName="createdAt" />
           <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
@@ -244,6 +309,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="View_UsingService">
+      <EntityTypeMapping TypeName="QLHSBAModel.View_UsingService">
+        <MappingFragment StoreEntitySet="View_UsingService">
+          <ScalarProperty Name="usingServiceID" ColumnName="usingServiceID" />
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="serviceID" ColumnName="serviceID" />
+          <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+          <ScalarProperty Name="servicePrice" ColumnName="servicePrice" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="totalPay" ColumnName="totalPay" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="Relatives" TypeName="QLHSBAModel.Relatives" StoreEntitySet="Relatives">
       <EndProperty Name="People">
         <ScalarProperty Name="peopleID" ColumnName="patientID" />
@@ -252,6 +332,87 @@
         <ScalarProperty Name="peopleID" ColumnName="relativeID" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_getExamHistory" FunctionImportName="func_getExamHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.func_getExamHistory_Result">
+          <ScalarProperty Name="examinateID" ColumnName="examinateID" />
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="tenBenhNhan" ColumnName="tenBenhNhan" />
+          <ScalarProperty Name="hoBenhNhan" ColumnName="hoBenhNhan" />
+          <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+          <ScalarProperty Name="tenBacSi" ColumnName="tenBacSi" />
+          <ScalarProperty Name="hoBacSi" ColumnName="hoBacSi" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="temperature" ColumnName="temperature" />
+          <ScalarProperty Name="breathing" ColumnName="breathing" />
+          <ScalarProperty Name="symptom" ColumnName="symptom" />
+          <ScalarProperty Name="veins" ColumnName="veins" />
+          <ScalarProperty Name="bloodPressure" ColumnName="bloodPressure" />
+          <ScalarProperty Name="preliminaryDiagnosis" ColumnName="preliminaryDiagnosis" />
+          <ScalarProperty Name="finalDiagnosis" ColumnName="finalDiagnosis" />
+          <ScalarProperty Name="treatmentDirection" ColumnName="treatmentDirection" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_getExamWithID" FunctionImportName="func_getExamWithID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.func_getExamWithID_Result">
+          <ScalarProperty Name="examinateID" ColumnName="examinateID" />
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="tenBenhNhan" ColumnName="tenBenhNhan" />
+          <ScalarProperty Name="hoBenhNhan" ColumnName="hoBenhNhan" />
+          <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+          <ScalarProperty Name="tenBacSi" ColumnName="tenBacSi" />
+          <ScalarProperty Name="hoBacSi" ColumnName="hoBacSi" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="temperature" ColumnName="temperature" />
+          <ScalarProperty Name="breathing" ColumnName="breathing" />
+          <ScalarProperty Name="symptom" ColumnName="symptom" />
+          <ScalarProperty Name="veins" ColumnName="veins" />
+          <ScalarProperty Name="bloodPressure" ColumnName="bloodPressure" />
+          <ScalarProperty Name="preliminaryDiagnosis" ColumnName="preliminaryDiagnosis" />
+          <ScalarProperty Name="finalDiagnosis" ColumnName="finalDiagnosis" />
+          <ScalarProperty Name="treatmentDirection" ColumnName="treatmentDirection" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_getListService_notYet" FunctionImportName="func_getListService_notYet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.func_getListService_notYet_Result">
+          <ScalarProperty Name="usingServiceID" ColumnName="usingServiceID" />
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="serviceID" ColumnName="serviceID" />
+          <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payTotal" ColumnName="payTotal" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_getRelatives" FunctionImportName="func_getRelatives">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.func_getRelatives_Result">
+          <ScalarProperty Name="relativeID" ColumnName="relativeID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_listPatient_UsingService_toDay" FunctionImportName="func_listPatient_UsingService_toDay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.func_listPatient_UsingService_toDay_Result">
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="patientFirstName" ColumnName="patientFirstName" />
+          <ScalarProperty Name="patientLastname" ColumnName="patientLastname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="DeleteDepartment" FunctionName="QLHSBAModel.Store.DeleteDepartment" />
     <FunctionImportMapping FunctionImportName="FindAllDoctor" FunctionName="QLHSBAModel.Store.FindAllDoctor">
       <ResultMapping>
@@ -265,6 +426,25 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="cardID" ColumnName="cardID" />
           <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="FindAllPatientWait" FunctionName="QLHSBAModel.Store.FindAllPatientWait">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.FindAllPatientWait_Result">
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="patientFirstName" ColumnName="patientFirstName" />
+          <ScalarProperty Name="patientLastname" ColumnName="patientLastname" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cardID" ColumnName="cardID" />
+          <ScalarProperty Name="patientJob" ColumnName="patientJob" />
+          <ScalarProperty Name="healthInsurance" ColumnName="healthInsurance" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
           <ScalarProperty Name="createdAt" ColumnName="createdAt" />
           <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
         </ComplexTypeMapping>
@@ -287,23 +467,93 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="FindDepartmentNameByDoctorId" FunctionName="QLHSBAModel.Store.FindDepartmentNameByDoctorId" />
+    <FunctionImportMapping FunctionImportName="FindFullNameDoctorByDoctorId" FunctionName="QLHSBAModel.Store.FindFullNameDoctorByDoctorId" />
     <FunctionImportMapping FunctionImportName="InsertDepartment" FunctionName="QLHSBAModel.Store.InsertDepartment" />
     <FunctionImportMapping FunctionImportName="InsertDoctor" FunctionName="QLHSBAModel.Store.InsertDoctor" />
     <FunctionImportMapping FunctionImportName="InsertPatient" FunctionName="QLHSBAModel.Store.InsertPatient" />
     <FunctionImportMapping FunctionImportName="InsertRelative" FunctionName="QLHSBAModel.Store.InsertRelative" />
+    <FunctionImportMapping FunctionImportName="InsertRelative_Exist" FunctionName="QLHSBAModel.Store.InsertRelative_Exist" />
     <FunctionImportMapping FunctionImportName="InsertStaff" FunctionName="QLHSBAModel.Store.InsertStaff" />
+    <FunctionImportMapping FunctionImportName="proc_createNewNullExamination" FunctionName="QLHSBAModel.Store.proc_createNewNullExamination" />
+    <FunctionImportMapping FunctionImportName="proc_InsertUsingService" FunctionName="QLHSBAModel.Store.proc_InsertUsingService" />
+    <FunctionImportMapping FunctionImportName="proc_UpdateUsingService" FunctionName="QLHSBAModel.Store.proc_UpdateUsingService" />
+    <FunctionImportMapping FunctionImportName="spCountPatientsWait" FunctionName="QLHSBAModel.Store.spCountPatientsWait" />
+    <FunctionImportMapping FunctionImportName="spDeleteMedicine" FunctionName="QLHSBAModel.Store.spDeleteMedicine" />
+    <FunctionImportMapping FunctionImportName="spDeleteMedicineGroup" FunctionName="QLHSBAModel.Store.spDeleteMedicineGroup" />
+    <FunctionImportMapping FunctionImportName="spDeletePrescription_Medicine" FunctionName="QLHSBAModel.Store.spDeletePrescription_Medicine" />
+    <FunctionImportMapping FunctionImportName="spExaminateIDNext" FunctionName="QLHSBAModel.Store.spExaminateIDNext" />
+    <FunctionImportMapping FunctionImportName="spFindAllMedicine1" FunctionName="QLHSBAModel.Store.spFindAllMedicine1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.spFindAllMedicine1_Result">
+          <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+          <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="medicinePrice" ColumnName="medicinePrice" />
+          <ScalarProperty Name="expiry" ColumnName="expiry" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="shape" ColumnName="shape" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spFindAllMedicine1ByMedicineName" FunctionName="QLHSBAModel.Store.spFindAllMedicine1ByMedicineName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.spFindAllMedicine1ByMedicineName_Result">
+          <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+          <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="medicinePrice" ColumnName="medicinePrice" />
+          <ScalarProperty Name="expiry" ColumnName="expiry" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="shape" ColumnName="shape" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spFindAllMedicineGroup" FunctionName="QLHSBAModel.Store.spFindAllMedicineGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.spFindAllMedicineGroup_Result">
+          <ScalarProperty Name="medicineGroupID" ColumnName="medicineGroupID" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spFindAllPrescription_Medicine" FunctionName="QLHSBAModel.Store.spFindAllPrescription_Medicine">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLHSBAModel.spFindAllPrescription_Medicine_Result">
+          <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
+          <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+          <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+          <ScalarProperty Name="medicineGroupName" ColumnName="medicineGroupName" />
+          <ScalarProperty Name="shape" ColumnName="shape" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="medicinePrice" ColumnName="medicinePrice" />
+          <ScalarProperty Name="expiry" ColumnName="expiry" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetPrescriptionID_New" FunctionName="QLHSBAModel.Store.spGetPrescriptionID_New" />
+    <FunctionImportMapping FunctionImportName="spInsertExamination" FunctionName="QLHSBAModel.Store.spInsertExamination" />
+    <FunctionImportMapping FunctionImportName="spInsertMedicine" FunctionName="QLHSBAModel.Store.spInsertMedicine" />
+    <FunctionImportMapping FunctionImportName="spInsertMedicineGroup" FunctionName="QLHSBAModel.Store.spInsertMedicineGroup" />
+    <FunctionImportMapping FunctionImportName="spInsertPrescription_Medicine" FunctionName="QLHSBAModel.Store.spInsertPrescription_Medicine" />
+    <FunctionImportMapping FunctionImportName="spInsertPrescription_Null" FunctionName="QLHSBAModel.Store.spInsertPrescription_Null" />
+    <FunctionImportMapping FunctionImportName="spUpdateMedicine" FunctionName="QLHSBAModel.Store.spUpdateMedicine" />
+    <FunctionImportMapping FunctionImportName="spUpdateMedicineGroup" FunctionName="QLHSBAModel.Store.spUpdateMedicineGroup" />
+    <FunctionImportMapping FunctionImportName="spUpdatePrescription" FunctionName="QLHSBAModel.Store.spUpdatePrescription" />
+    <FunctionImportMapping FunctionImportName="spUpdatePrescription_Medicine" FunctionName="QLHSBAModel.Store.spUpdatePrescription_Medicine" />
     <FunctionImportMapping FunctionImportName="UpdateDepartment" FunctionName="QLHSBAModel.Store.UpdateDepartment" />
     <FunctionImportMapping FunctionImportName="UpdateDoctor_Staff" FunctionName="QLHSBAModel.Store.UpdateDoctor_Staff" />
     <FunctionImportMapping FunctionImportName="UpdatePatient" FunctionName="QLHSBAModel.Store.UpdatePatient" />
     <FunctionImportMapping FunctionImportName="UpdateRelative" FunctionName="QLHSBAModel.Store.UpdateRelative" />
-    <FunctionImportMapping FunctionImportName="func_getRelatives" FunctionName="QLHSBAModel.Store.func_getRelatives">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLHSBAModel.func_getRelatives_Result">
-          <ScalarProperty Name="relativeID" ColumnName="relativeID" />
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

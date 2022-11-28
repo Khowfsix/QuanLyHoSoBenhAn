@@ -1,5 +1,6 @@
 ﻿using BUS.impl;
 using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BUS
     public class Exam_uService_BUS
     {
         QLHSBAEntities db = new QLHSBAEntities();
-        iUsingServiceBUS usingServiceBUS = new UsingServiceBUS_impl();
+        UsingServiceBUS_impl usingServiceBUS = new UsingServiceBUS_impl();
 
         public void InsertUsingService(string patientID, string serviceID, byte quantity)
         {

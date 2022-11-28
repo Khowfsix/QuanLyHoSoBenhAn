@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BUS.impl
 {
-    public class ReceiptBUS_impl : iReceiptBUS
+    public class ReceiptBUS_impl 
     {
         public void Create(Receipt obj)
         {

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using BUS;
+using GUI.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BUS;
-using GUI.View;
 
 namespace GUI
 {
-    public static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -19,8 +19,10 @@ namespace GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            EmployeeBUS employeeBUS = new EmployeeBUS();
-            Application.Run(new TiepNhanBenhNhan(employeeBUS.findByID("NV05")));
+            //EmployeeBUS employeeBUS = new EmployeeBUS();
+            //Application.Run(new TiepNhanBenhNhan(employeeBUS.findByID("NV01")));
+
+            Application.Run(new frmExamine());
         }
     }
 }
