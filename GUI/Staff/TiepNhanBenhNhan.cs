@@ -181,7 +181,7 @@ namespace GUI.Staff
                 }
                 else
                 {
-                    payUsingService thanhToanDichVu = new payUsingService(txtIDpatient.Text);
+                    payUsingService thanhToanDichVu = new payUsingService(txtIDpatient.Text, employee.employeeID);
                     thanhToanDichVu.ShowDialog();
                 }
             }

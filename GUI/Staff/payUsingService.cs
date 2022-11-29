@@ -15,11 +15,13 @@ namespace GUI.Staff
     {
         UsingServiceBUS_impl usingServiceBUS = new UsingServiceBUS_impl();
         string patientID;
+        string employeeID;
 
-        public payUsingService(string patientID)
+        public payUsingService(string patientID, string employeeID)
         {
             InitializeComponent();
             this.patientID = patientID;
+            this.employeeID = employeeID;
             lb_totayPay.Text = "00";
         }
 
@@ -28,7 +30,8 @@ namespace GUI.Staff
             DialogResult dialogResult = MessageBox.Show("Xác nhận thanh toán", "Thanh toán", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                usingServiceBUS.payService(patientID);
+                usingServiceBUS.payService(patientID, employeeID);
+
                 MessageBox.Show("Đã thanh toán");
                 dataGridView_usingService.Rows.Clear();
                 lb_totayPay.Text = "00";

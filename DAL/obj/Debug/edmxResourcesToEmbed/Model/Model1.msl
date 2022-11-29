@@ -556,5 +556,7 @@
     <FunctionImportMapping FunctionImportName="UpdateDoctor_Staff" FunctionName="QLHSBAModel.Store.UpdateDoctor_Staff" />
     <FunctionImportMapping FunctionImportName="UpdatePatient" FunctionName="QLHSBAModel.Store.UpdatePatient" />
     <FunctionImportMapping FunctionImportName="UpdateRelative" FunctionName="QLHSBAModel.Store.UpdateRelative" />
+    <FunctionImportMapping FunctionImportName="proc_InsertPay" FunctionName="QLHSBAModel.Store.proc_InsertPay" />
+    <FunctionImportMapping FunctionImportName="proc_InsertReceipt" FunctionName="QLHSBAModel.Store.proc_InsertReceipt" />
   </EntityContainerMapping>
 </Mapping>

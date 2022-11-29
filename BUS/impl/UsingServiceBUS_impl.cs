@@ -32,12 +32,10 @@ namespace BUS.impl
             return Convert.ToInt32(t);
         }
 
-        public void payService(string patientID)
+        public void payService(string patientID, string employeeID)
         {
-            foreach (var item in GetNotYet_Results(patientID))
-            {
-                db.proc_Pay_service(item.usingServiceID);
-            }
+            db.proc_Pay_service(patientID, employeeID);
+            db.SaveChanges();
         }
 
         public void Delete(UsingService obj)

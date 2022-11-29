@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLHSBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLHSBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="accountName" />
@@ -113,7 +113,7 @@
           <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="payTotal" Type="int" />
           <Property Name="status" Type="tinyint" Nullable="false" />
-          <Property Name="createdAt" Type="date" Nullable="false" />
+          <Property Name="createdAt" Type="date" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -158,7 +158,7 @@
           <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="receiptName" Type="nvarchar" MaxLength="255" />
           <Property Name="status" Type="tinyint" Nullable="false" />
-          <Property Name="createdAt" Type="datetime" />
+          <Property Name="createdAt" Type="date" />
           <Property Name="updatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="Relatives">
@@ -768,13 +768,25 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Parameter Name="patientID" Type="varchar" Mode="In" />
           <Parameter Name="employeeID" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_InsertPay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="patientID" Type="varchar" Mode="In" />
+          <Parameter Name="employeeID" Type="varchar" Mode="In" />
+          <Parameter Name="receiptID" Type="varchar" Mode="In" />
+          <Parameter Name="payTotal" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertReceipt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="varchar" Mode="In" />
+          <Parameter Name="patientID" Type="varchar" Mode="In" />
+          <Parameter Name="employeeID" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_InsertUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="patientID" Type="varchar" Mode="In" />
           <Parameter Name="serviceID" Type="varchar" Mode="In" />
           <Parameter Name="quantity" Type="tinyint" Mode="In" />
         </Function>
         <Function Name="proc_Pay_service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="usingServiceID" Type="int" Mode="In" />
+          <Parameter Name="patientID" Type="varchar" Mode="In" />
+          <Parameter Name="employeeID" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_UpdateUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usingServiceID" Type="varchar" Mode="In" />
@@ -1105,8 +1117,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <End Role="UsingService" EntitySet="UsingService" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLHSBAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1295,7 +1306,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="payTotal" Type="Int32" />
           <Property Name="status" Type="Byte" Nullable="false" />
-          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="createdAt" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="Self.employeePay" FromRole="Pay" ToRole="Employees" />
           <NavigationProperty Name="Patient" Relationship="Self.patientPay" FromRole="Pay" ToRole="Patients" />
           <NavigationProperty Name="Receipt" Relationship="Self.receiptPay" FromRole="Pay" ToRole="Receipts" />
@@ -1350,7 +1361,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="receiptName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Byte" Nullable="false" />
-          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <Property Name="createdAt" Type="DateTime" Precision="0" />
           <Property Name="updatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pays" Relationship="Self.receiptPay" FromRole="Receipts" ToRole="Pay" />
         </EntityType>
@@ -1813,32 +1824,32 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <End Role="People1" EntitySet="People" />
           </AssociationSet>
           <FunctionImport Name="func_getExamHistory" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getExamHistory_Result)">
-            <Parameter Name="patientID" Mode="In" Type="String" />
+          <Parameter Name="patientID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="func_getExamWithID" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getExamWithID_Result)">
-            <Parameter Name="examID" Mode="In" Type="String" />
+          <Parameter Name="examID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="func_getListService_notYet" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getListService_notYet_Result)">
-            <Parameter Name="patientID" Mode="In" Type="String" />
+          <Parameter Name="patientID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="func_getRelatives" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getRelatives_Result)">
-            <Parameter Name="patientID" Mode="In" Type="String" />
+          <Parameter Name="patientID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="func_listPatient_UsingService_toDay" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_listPatient_UsingService_toDay_Result)" />
           <FunctionImport Name="DeleteDepartment">
-            <Parameter Name="departmentID" Mode="In" Type="String" />
+          <Parameter Name="departmentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="FindAllDoctor" ReturnType="Collection(QLHSBAModel.FindAllDoctor_Result)" />
           <FunctionImport Name="FindAllPatientWait" ReturnType="Collection(QLHSBAModel.FindAllPatientWait_Result)" />
           <FunctionImport Name="FindAllStaff" ReturnType="Collection(QLHSBAModel.FindAllStaff_Result)" />
           <FunctionImport Name="FindDepartmentNameByDoctorId" ReturnType="Collection(String)">
-            <Parameter Name="doctorID" Mode="In" Type="String" />
+          <Parameter Name="doctorID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="FindFullNameDoctorByDoctorId" ReturnType="Collection(String)">
-            <Parameter Name="doctorID" Mode="In" Type="String" />
+          <Parameter Name="doctorID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertDepartment">
-            <Parameter Name="departmentName" Mode="In" Type="String" />
+          <Parameter Name="departmentName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertDoctor">
             <Parameter Name="employeeFirstName" Mode="In" Type="String" />
@@ -1896,7 +1907,8 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <Parameter Name="quantity" Mode="In" Type="Byte" />
           </FunctionImport>
           <FunctionImport Name="proc_Pay_service">
-            <Parameter Name="usingServiceID" Mode="In" Type="Int32" />
+          <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="employeeID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_UpdateUsingService">
             <Parameter Name="usingServiceID" Mode="In" Type="String" />
@@ -1906,10 +1918,10 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           </FunctionImport>
           <FunctionImport Name="spCountPatientsWait" ReturnType="Collection(Int32)" />
           <FunctionImport Name="spDeleteMedicine">
-            <Parameter Name="medicineID" Mode="In" Type="String" />
+          <Parameter Name="medicineID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spDeleteMedicineGroup">
-            <Parameter Name="medicineGroupID" Mode="In" Type="String" />
+          <Parameter Name="medicineGroupID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spDeletePrescription_Medicine">
             <Parameter Name="prescriptionID" Mode="In" Type="String" />
@@ -1918,11 +1930,11 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <FunctionImport Name="spExaminateIDNext" ReturnType="Collection(String)" />
           <FunctionImport Name="spFindAllMedicine1" ReturnType="Collection(QLHSBAModel.spFindAllMedicine1_Result)" />
           <FunctionImport Name="spFindAllMedicine1ByMedicineName" ReturnType="Collection(QLHSBAModel.spFindAllMedicine1ByMedicineName_Result)">
-            <Parameter Name="medicineName" Mode="In" Type="String" />
+          <Parameter Name="medicineName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spFindAllMedicineGroup" ReturnType="Collection(QLHSBAModel.spFindAllMedicineGroup_Result)" />
           <FunctionImport Name="spFindAllPrescription_Medicine" ReturnType="Collection(QLHSBAModel.spFindAllPrescription_Medicine_Result)">
-            <Parameter Name="prescriptionID" Mode="In" Type="String" />
+          <Parameter Name="prescriptionID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spGetPrescriptionID_New" ReturnType="Collection(String)" />
           <FunctionImport Name="spInsertExamination">
@@ -1949,7 +1961,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <Parameter Name="medicineGroupName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spInsertMedicineGroup">
-            <Parameter Name="medicineGroupName" Mode="In" Type="String" />
+          <Parameter Name="medicineGroupName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spInsertPrescription_Medicine">
             <Parameter Name="prescriptionID" Mode="In" Type="String" />
@@ -2021,6 +2033,17 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <Parameter Name="cardID" Mode="In" Type="String" />
             <Parameter Name="patientID" Mode="In" Type="String" />
             <Parameter Name="relativeID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_InsertPay">
+            <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="employeeID" Mode="In" Type="String" />
+            <Parameter Name="receiptID" Mode="In" Type="String" />
+            <Parameter Name="payTotal" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_InsertReceipt">
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="employeeID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="FindAllDoctor_Result">
@@ -2667,6 +2690,8 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <FunctionImportMapping FunctionImportName="UpdateDoctor_Staff" FunctionName="QLHSBAModel.Store.UpdateDoctor_Staff" />
           <FunctionImportMapping FunctionImportName="UpdatePatient" FunctionName="QLHSBAModel.Store.UpdatePatient" />
           <FunctionImportMapping FunctionImportName="UpdateRelative" FunctionName="QLHSBAModel.Store.UpdateRelative" />
+          <FunctionImportMapping FunctionImportName="proc_InsertPay" FunctionName="QLHSBAModel.Store.proc_InsertPay" />
+          <FunctionImportMapping FunctionImportName="proc_InsertReceipt" FunctionName="QLHSBAModel.Store.proc_InsertReceipt" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

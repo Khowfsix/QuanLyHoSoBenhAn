@@ -20,7 +20,7 @@ namespace DAL.Model
         public string receiptID { get; set; }
         public Nullable<int> payTotal { get; set; }
         public byte status { get; set; }
-        public System.DateTime createdAt { get; set; }
+        public Nullable<System.DateTime> createdAt { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Patient Patient { get; set; }

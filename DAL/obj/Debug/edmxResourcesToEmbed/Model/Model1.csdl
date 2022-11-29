@@ -185,7 +185,7 @@
     <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="payTotal" Type="Int32" />
     <Property Name="status" Type="Byte" Nullable="false" />
-    <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="createdAt" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Employee" Relationship="Self.employeePay" FromRole="Pay" ToRole="Employees" />
     <NavigationProperty Name="Patient" Relationship="Self.patientPay" FromRole="Pay" ToRole="Patients" />
     <NavigationProperty Name="Receipt" Relationship="Self.receiptPay" FromRole="Pay" ToRole="Receipts" />
@@ -240,7 +240,7 @@
     <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="receiptName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Byte" Nullable="false" />
-    <Property Name="createdAt" Type="DateTime" Precision="3" />
+    <Property Name="createdAt" Type="DateTime" Precision="0" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Pays" Relationship="Self.receiptPay" FromRole="Receipts" ToRole="Pay" />
   </EntityType>
@@ -786,7 +786,8 @@
       <Parameter Name="quantity" Mode="In" Type="Byte" />
     </FunctionImport>
     <FunctionImport Name="proc_Pay_service">
-      <Parameter Name="usingServiceID" Mode="In" Type="Int32" />
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_UpdateUsingService">
       <Parameter Name="usingServiceID" Mode="In" Type="String" />
@@ -911,6 +912,17 @@
       <Parameter Name="cardID" Mode="In" Type="String" />
       <Parameter Name="patientID" Mode="In" Type="String" />
       <Parameter Name="relativeID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertPay">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+      <Parameter Name="receiptID" Mode="In" Type="String" />
+      <Parameter Name="payTotal" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertReceipt">
+      <Parameter Name="type" Mode="In" Type="String" />
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="FindAllDoctor_Result">

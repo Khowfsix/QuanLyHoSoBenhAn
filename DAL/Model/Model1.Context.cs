@@ -347,13 +347,17 @@ namespace DAL.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertUsingService", patientIDParameter, serviceIDParameter, quantityParameter);
         }
     
-        public virtual int proc_Pay_service(Nullable<int> usingServiceID)
+        public virtual int proc_Pay_service(string patientID, string employeeID)
         {
-            var usingServiceIDParameter = usingServiceID.HasValue ?
-                new ObjectParameter("usingServiceID", usingServiceID) :
-                new ObjectParameter("usingServiceID", typeof(int));
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Pay_service", usingServiceIDParameter);
+            var employeeIDParameter = employeeID != null ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Pay_service", patientIDParameter, employeeIDParameter);
         }
     
         public virtual int proc_UpdateUsingService(string usingServiceID, string patientID, string serviceID, Nullable<byte> quantity)
@@ -798,6 +802,44 @@ namespace DAL.Model
                 new ObjectParameter("relativeID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateRelative", relativeFirstNameParameter, relativeLastnameParameter, sexParameter, birthDayParameter, addressParameter, phoneParameter, cardIDParameter, patientIDParameter, relativeIDParameter);
+        }
+    
+        public virtual int proc_InsertPay(string patientID, string employeeID, string receiptID, Nullable<int> payTotal)
+        {
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
+    
+            var employeeIDParameter = employeeID != null ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(string));
+    
+            var receiptIDParameter = receiptID != null ?
+                new ObjectParameter("receiptID", receiptID) :
+                new ObjectParameter("receiptID", typeof(string));
+    
+            var payTotalParameter = payTotal.HasValue ?
+                new ObjectParameter("payTotal", payTotal) :
+                new ObjectParameter("payTotal", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertPay", patientIDParameter, employeeIDParameter, receiptIDParameter, payTotalParameter);
+        }
+    
+        public virtual int proc_InsertReceipt(string type, string patientID, string employeeID)
+        {
+            var typeParameter = type != null ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(string));
+    
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
+    
+            var employeeIDParameter = employeeID != null ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertReceipt", typeParameter, patientIDParameter, employeeIDParameter);
         }
     }
 }

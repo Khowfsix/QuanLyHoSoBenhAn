@@ -108,7 +108,7 @@
     <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="payTotal" Type="int" />
     <Property Name="status" Type="tinyint" Nullable="false" />
-    <Property Name="createdAt" Type="date" Nullable="false" />
+    <Property Name="createdAt" Type="date" />
   </EntityType>
   <EntityType Name="People">
     <Key>
@@ -153,7 +153,7 @@
     <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="receiptName" Type="nvarchar" MaxLength="255" />
     <Property Name="status" Type="tinyint" Nullable="false" />
-    <Property Name="createdAt" Type="datetime" />
+    <Property Name="createdAt" Type="date" />
     <Property Name="updatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="Relatives">
@@ -763,13 +763,25 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
     <Parameter Name="patientID" Type="varchar" Mode="In" />
     <Parameter Name="employeeID" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_InsertPay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
+    <Parameter Name="receiptID" Type="varchar" Mode="In" />
+    <Parameter Name="payTotal" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertReceipt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type" Type="varchar" Mode="In" />
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="proc_InsertUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="patientID" Type="varchar" Mode="In" />
     <Parameter Name="serviceID" Type="varchar" Mode="In" />
     <Parameter Name="quantity" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="proc_Pay_service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="usingServiceID" Type="int" Mode="In" />
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_UpdateUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usingServiceID" Type="varchar" Mode="In" />
