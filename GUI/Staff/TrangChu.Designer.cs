@@ -1,4 +1,4 @@
-﻿namespace GUI.View
+﻿namespace GUI.Staff
 {
     partial class TrangChu
     {

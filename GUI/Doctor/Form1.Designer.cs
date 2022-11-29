@@ -1,4 +1,4 @@
-﻿namespace GUI
+﻿namespace GUI.Doctor
 {
     partial class Form1
     {

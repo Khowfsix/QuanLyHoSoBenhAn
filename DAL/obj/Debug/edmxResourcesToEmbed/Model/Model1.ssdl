@@ -768,6 +768,9 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
     <Parameter Name="serviceID" Type="varchar" Mode="In" />
     <Parameter Name="quantity" Type="tinyint" Mode="In" />
   </Function>
+  <Function Name="proc_Pay_service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usingServiceID" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_UpdateUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usingServiceID" Type="varchar" Mode="In" />
     <Parameter Name="patientID" Type="varchar" Mode="In" />

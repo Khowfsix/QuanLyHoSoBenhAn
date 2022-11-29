@@ -1,5 +1,4 @@
-﻿using BUS;
-using GUI.View;
+﻿using GUI.Staff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +18,7 @@ namespace GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //EmployeeBUS employeeBUS = new EmployeeBUS();
-            //Application.Run(new TiepNhanBenhNhan(employeeBUS.findByID("NV01")));
-
-            Application.Run(new frmExamine());
+            Application.Run(new index());
         }
     }
 }

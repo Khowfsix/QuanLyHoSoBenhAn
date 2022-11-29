@@ -2,13 +2,15 @@
 using DAL.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BUS.impl
 {
-    public class UsingServiceBUS_impl 
+    public class UsingServiceBUS_impl
     {
         QLHSBAEntities db = new QLHSBAEntities();
 
@@ -16,6 +18,26 @@ namespace BUS.impl
         {
             db.proc_InsertUsingService(patientID, serviceID, quantity);
             db.SaveChanges();
+        }
+
+        public List<func_getListService_notYet_Result> GetNotYet_Results(string patientID)
+        {
+            return db.func_getListService_notYet(patientID).ToList();
+        }
+
+        public int getTotalPay(string patientID)
+        {
+            var t = db.Database.SqlQuery<int>("SELECT [dbo].[func_getTotalPay_usingService]('" + patientID + "')")
+                        .FirstOrDefault();
+            return Convert.ToInt32(t);
+        }
+
+        public void payService(string patientID)
+        {
+            foreach (var item in GetNotYet_Results(patientID))
+            {
+                db.proc_Pay_service(item.usingServiceID);
+            }
         }
 
         public void Delete(UsingService obj)

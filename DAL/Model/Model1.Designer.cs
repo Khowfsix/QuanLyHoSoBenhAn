@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\FinalProject_DBMS - 1\FinalProject_DBMS\DAL\Model\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\Model\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

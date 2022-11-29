@@ -1,4 +1,4 @@
-﻿namespace GUI.View
+﻿namespace GUI.Staff
 {
     partial class TiepNhanBenhNhan
     {
@@ -67,6 +67,8 @@
             this.btnExam = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnUsingService = new System.Windows.Forms.Button();
+            this.btnPay_service = new System.Windows.Forms.Button();
+            this.btnPay_medicine = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInfoPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
             this.SuspendLayout();
@@ -379,6 +381,7 @@
             // 
             // btnExam
             // 
+            this.btnExam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExam.Location = new System.Drawing.Point(790, 340);
             this.btnExam.Name = "btnExam";
             this.btnExam.Size = new System.Drawing.Size(344, 52);
@@ -407,11 +410,35 @@
             this.btnUsingService.UseVisualStyleBackColor = true;
             this.btnUsingService.Click += new System.EventHandler(this.btnUsingService_Click);
             // 
+            // btnPay_service
+            // 
+            this.btnPay_service.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPay_service.Location = new System.Drawing.Point(1178, 37);
+            this.btnPay_service.Name = "btnPay_service";
+            this.btnPay_service.Size = new System.Drawing.Size(93, 297);
+            this.btnPay_service.TabIndex = 37;
+            this.btnPay_service.Text = "Thanh toán dịch vụ";
+            this.btnPay_service.UseVisualStyleBackColor = true;
+            this.btnPay_service.Click += new System.EventHandler(this.btnPay_service_Click);
+            // 
+            // btnPay_medicine
+            // 
+            this.btnPay_medicine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPay_medicine.Location = new System.Drawing.Point(1178, 360);
+            this.btnPay_medicine.Name = "btnPay_medicine";
+            this.btnPay_medicine.Size = new System.Drawing.Size(93, 297);
+            this.btnPay_medicine.TabIndex = 38;
+            this.btnPay_medicine.Text = "Thanh toán đơn thuốc";
+            this.btnPay_medicine.UseVisualStyleBackColor = true;
+            this.btnPay_medicine.Click += new System.EventHandler(this.btnPay_medicine_Click);
+            // 
             // TiepNhanBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1146, 669);
+            this.ClientSize = new System.Drawing.Size(1296, 669);
+            this.Controls.Add(this.btnPay_medicine);
+            this.Controls.Add(this.btnPay_service);
             this.Controls.Add(this.btnUsingService);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnExam);
@@ -491,5 +518,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
         private System.Windows.Forms.DataGridViewTextBoxColumn cardID;
         private System.Windows.Forms.Button btnUsingService;
+        private System.Windows.Forms.Button btnPay_service;
+        private System.Windows.Forms.Button btnPay_medicine;
     }
 }

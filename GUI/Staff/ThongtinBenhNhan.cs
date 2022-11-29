@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUI.View
+namespace GUI.Staff
 {
     public partial class ThongtinBenhNhan : Form
     {

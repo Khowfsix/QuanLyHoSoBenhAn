@@ -773,6 +773,9 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Parameter Name="serviceID" Type="varchar" Mode="In" />
           <Parameter Name="quantity" Type="tinyint" Mode="In" />
         </Function>
+        <Function Name="proc_Pay_service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usingServiceID" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_UpdateUsingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usingServiceID" Type="varchar" Mode="In" />
           <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -1892,6 +1895,9 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <Parameter Name="serviceID" Mode="In" Type="String" />
             <Parameter Name="quantity" Mode="In" Type="Byte" />
           </FunctionImport>
+          <FunctionImport Name="proc_Pay_service">
+            <Parameter Name="usingServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="proc_UpdateUsingService">
             <Parameter Name="usingServiceID" Mode="In" Type="String" />
             <Parameter Name="patientID" Mode="In" Type="String" />
@@ -2582,6 +2588,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <FunctionImportMapping FunctionImportName="InsertStaff" FunctionName="QLHSBAModel.Store.InsertStaff" />
           <FunctionImportMapping FunctionImportName="proc_createNewNullExamination" FunctionName="QLHSBAModel.Store.proc_createNewNullExamination" />
           <FunctionImportMapping FunctionImportName="proc_InsertUsingService" FunctionName="QLHSBAModel.Store.proc_InsertUsingService" />
+          <FunctionImportMapping FunctionImportName="proc_Pay_service" FunctionName="QLHSBAModel.Store.proc_Pay_service" />
           <FunctionImportMapping FunctionImportName="proc_UpdateUsingService" FunctionName="QLHSBAModel.Store.proc_UpdateUsingService" />
           <FunctionImportMapping FunctionImportName="spCountPatientsWait" FunctionName="QLHSBAModel.Store.spCountPatientsWait" />
           <FunctionImportMapping FunctionImportName="spDeleteMedicine" FunctionName="QLHSBAModel.Store.spDeleteMedicine" />

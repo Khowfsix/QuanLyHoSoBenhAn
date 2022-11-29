@@ -347,6 +347,15 @@ namespace DAL.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertUsingService", patientIDParameter, serviceIDParameter, quantityParameter);
         }
     
+        public virtual int proc_Pay_service(Nullable<int> usingServiceID)
+        {
+            var usingServiceIDParameter = usingServiceID.HasValue ?
+                new ObjectParameter("usingServiceID", usingServiceID) :
+                new ObjectParameter("usingServiceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Pay_service", usingServiceIDParameter);
+        }
+    
         public virtual int proc_UpdateUsingService(string usingServiceID, string patientID, string serviceID, Nullable<byte> quantity)
         {
             var usingServiceIDParameter = usingServiceID != null ?

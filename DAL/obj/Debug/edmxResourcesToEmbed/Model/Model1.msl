@@ -477,6 +477,7 @@
     <FunctionImportMapping FunctionImportName="InsertStaff" FunctionName="QLHSBAModel.Store.InsertStaff" />
     <FunctionImportMapping FunctionImportName="proc_createNewNullExamination" FunctionName="QLHSBAModel.Store.proc_createNewNullExamination" />
     <FunctionImportMapping FunctionImportName="proc_InsertUsingService" FunctionName="QLHSBAModel.Store.proc_InsertUsingService" />
+    <FunctionImportMapping FunctionImportName="proc_Pay_service" FunctionName="QLHSBAModel.Store.proc_Pay_service" />
     <FunctionImportMapping FunctionImportName="proc_UpdateUsingService" FunctionName="QLHSBAModel.Store.proc_UpdateUsingService" />
     <FunctionImportMapping FunctionImportName="spCountPatientsWait" FunctionName="QLHSBAModel.Store.spCountPatientsWait" />
     <FunctionImportMapping FunctionImportName="spDeleteMedicine" FunctionName="QLHSBAModel.Store.spDeleteMedicine" />

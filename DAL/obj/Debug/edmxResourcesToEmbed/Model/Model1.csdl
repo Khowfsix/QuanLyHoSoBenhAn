@@ -785,6 +785,9 @@
       <Parameter Name="serviceID" Mode="In" Type="String" />
       <Parameter Name="quantity" Mode="In" Type="Byte" />
     </FunctionImport>
+    <FunctionImport Name="proc_Pay_service">
+      <Parameter Name="usingServiceID" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="proc_UpdateUsingService">
       <Parameter Name="usingServiceID" Mode="In" Type="String" />
       <Parameter Name="patientID" Mode="In" Type="String" />

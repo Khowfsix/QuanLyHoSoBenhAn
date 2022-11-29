@@ -43,3 +43,18 @@ D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\FinalProject_DBMS - 
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\FinalProject_DBMS - 1\FinalProject_DBMS\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\FinalProject_DBMS - 1\FinalProject_DBMS\DAL\obj\Debug\DAL.dll
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\FinalProject_DBMS - 1\FinalProject_DBMS\DAL\obj\Debug\DAL.pdb
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\DAL.dll.config
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\DAL.dll
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\DAL.pdb
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\EntityFramework.dll
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\EntityFramework.SqlServerCompact.dll
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\System.Data.SqlServerCe.dll
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\EntityFramework.xml
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\bin\Debug\EntityFramework.SqlServerCompact.xml
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\obj\Debug\DAL.dll
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\DAL\obj\Debug\DAL.pdb

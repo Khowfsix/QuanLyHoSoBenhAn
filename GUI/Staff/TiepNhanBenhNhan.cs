@@ -1,18 +1,10 @@
 ﻿using BUS;
-using BUS.impl;
-using DAL;
 using DAL.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUI.View
+namespace GUI.Staff
 {
     public partial class TiepNhanBenhNhan : Form
     {
@@ -177,6 +169,29 @@ namespace GUI.View
             {
                 MessageBox.Show("Chọn bệnh nhân đã");
             }
+        }
+
+        private void btnPay_service_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtIDpatient.Text.Length < 1)
+                {
+                    MessageBox.Show("Chọn bệnh nhân chưa thế?");
+                }
+                else
+                {
+                    payUsingService thanhToanDichVu = new payUsingService(txtIDpatient.Text);
+                    thanhToanDichVu.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void btnPay_medicine_Click(object sender, EventArgs e)
+        {
         }
     }
 }

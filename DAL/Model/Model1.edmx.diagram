@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="637a552657cc4f608fe4a91fe36b9b08" Name="Diagram1">
+      <Diagram DiagramId="dd9835033e594682bb82810d0e2f9830" Name="Diagram1">
         <EntityTypeShape EntityType="QLHSBAModel.Account" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.CreatedPrescription" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Department" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />

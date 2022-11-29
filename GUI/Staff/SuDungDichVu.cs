@@ -13,7 +13,7 @@ using BUS.impl;
 using DAL;
 using DAL.Model;
 
-namespace GUI.View
+namespace GUI.Staff
 {
     public partial class SuDungDichVu : Form
     {
