@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using DAL.Model;
 
 namespace BUS
 {
@@ -12,6 +13,8 @@ namespace BUS
     {
         MedicineDAL medicineDAL;
         MedicineGroupDAL medicineGroupDAL;
+
+        QLHSBAEntities db = new QLHSBAEntities();
 
         public MedicineBUS()
         {

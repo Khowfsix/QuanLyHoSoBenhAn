@@ -25,6 +25,7 @@
           <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="examinateID" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -113,7 +114,7 @@
           <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="payTotal" Type="int" />
           <Property Name="status" Type="tinyint" Nullable="false" />
-          <Property Name="createdAt" Type="date" />
+          <Property Name="createdAt" Type="datetime" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -158,7 +159,7 @@
           <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="receiptName" Type="nvarchar" MaxLength="255" />
           <Property Name="status" Type="tinyint" Nullable="false" />
-          <Property Name="createdAt" Type="date" />
+          <Property Name="createdAt" Type="datetime" />
           <Property Name="updatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="Relatives">
@@ -271,6 +272,30 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Examination' does not have a prima
           <Property Name="preliminaryDiagnosis" Type="nvarchar" MaxLength="510" />
           <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
           <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
+          <Property Name="createdAt" Type="datetime" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_ListMedicine_Precesciption' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_ListMedicine_Precesciption">
+          <Key>
+            <PropertyRef Name="prescriptionID" />
+            <PropertyRef Name="patientID" />
+            <PropertyRef Name="employeeID" />
+            <PropertyRef Name="medicineID" />
+            <PropertyRef Name="medicineName" />
+            <PropertyRef Name="quanlity" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="examinateID" Type="varchar" MaxLength="20" />
+          <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="medicineID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="medicineName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="quanlity" Type="int" Nullable="false" />
+          <Property Name="medicinePrice" Type="int" />
+          <Property Name="totalPrice" Type="int" />
           <Property Name="createdAt" Type="datetime" />
           <Property Name="status" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -634,6 +659,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
                 <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
                 <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
                 <Property Name="createdAt" Type="datetime" />
+                <Property Name="status" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -661,6 +687,27 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
                 <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
                 <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
                 <Property Name="createdAt" Type="datetime" />
+                <Property Name="status" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="func_getListMedicion_withExamID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="examID" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="prescriptionID" Type="varchar" MaxLength="20" />
+                <Property Name="examinateID" Type="varchar" MaxLength="20" />
+                <Property Name="patientID" Type="varchar" MaxLength="20" />
+                <Property Name="employeeID" Type="varchar" MaxLength="20" />
+                <Property Name="medicineID" Type="varchar" MaxLength="20" />
+                <Property Name="medicineName" Type="nvarchar" MaxLength="255" />
+                <Property Name="quanlity" Type="int" />
+                <Property Name="medicinePrice" Type="int" />
+                <Property Name="totalPrice" Type="int" />
+                <Property Name="createdAt" Type="date" />
+                <Property Name="status" Type="tinyint" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -683,6 +730,19 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="func_getPrecription_notYet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="patientID" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="examinateID" Type="varchar" MaxLength="20" />
+                <Property Name="HoBacSi" Type="nvarchar" MaxLength="32" />
+                <Property Name="TenBacSi" Type="nvarchar" MaxLength="32" />
+                <Property Name="createdAt" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="func_GetPrescriptionID_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
         <Function Name="func_getRelatives" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -695,6 +755,9 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
               </RowType>
             </CollectionType>
           </ReturnType>
+        </Function>
+        <Function Name="func_getTotalPay_ListMedicine_withExamID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="examID" Type="varchar" Mode="In" />
         </Function>
         <Function Name="func_getTotalPay_usingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -783,6 +846,11 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Parameter Name="patientID" Type="varchar" Mode="In" />
           <Parameter Name="serviceID" Type="varchar" Mode="In" />
           <Parameter Name="quantity" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="proc_Pay_Medicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="patientID" Type="varchar" Mode="In" />
+          <Parameter Name="employeeID" Type="varchar" Mode="In" />
+          <Parameter Name="examinationID" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_Pay_service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -981,6 +1049,21 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
     [View_Examination].[status] AS [status]
     FROM [dbo].[View_Examination] AS [View_Examination]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="View_ListMedicine_Precesciption" EntityType="Self.View_ListMedicine_Precesciption" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ListMedicine_Precesciption].[prescriptionID] AS [prescriptionID], 
+    [View_ListMedicine_Precesciption].[examinateID] AS [examinateID], 
+    [View_ListMedicine_Precesciption].[patientID] AS [patientID], 
+    [View_ListMedicine_Precesciption].[employeeID] AS [employeeID], 
+    [View_ListMedicine_Precesciption].[medicineID] AS [medicineID], 
+    [View_ListMedicine_Precesciption].[medicineName] AS [medicineName], 
+    [View_ListMedicine_Precesciption].[quanlity] AS [quanlity], 
+    [View_ListMedicine_Precesciption].[medicinePrice] AS [medicinePrice], 
+    [View_ListMedicine_Precesciption].[totalPrice] AS [totalPrice], 
+    [View_ListMedicine_Precesciption].[createdAt] AS [createdAt], 
+    [View_ListMedicine_Precesciption].[status] AS [status]
+    FROM [dbo].[View_ListMedicine_Precesciption] AS [View_ListMedicine_Precesciption]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="View_MedicineGroup_ConvertID" EntityType="Self.View_MedicineGroup_ConvertID" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_MedicineGroup_ConvertID].[medicineGroupID] AS [medicineGroupID], 
@@ -1140,6 +1223,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
           <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
           <Property Name="createdAt" Type="DateTime" />
+          <Property Name="status" Type="Int32" />
         </ComplexType>
         <ComplexType Name="func_getExamWithID_Result">
           <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -1160,6 +1244,20 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
           <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
           <Property Name="createdAt" Type="DateTime" />
+          <Property Name="status" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="func_getListMedicion_withExamID_Result">
+          <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="medicineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="medicineName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="quanlity" Type="Int32" />
+          <Property Name="medicinePrice" Type="Int32" />
+          <Property Name="totalPrice" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" />
+          <Property Name="status" Type="Byte" />
         </ComplexType>
         <ComplexType Name="func_getListService_notYet_Result">
           <Property Name="usingServiceID" Type="Int32" />
@@ -1170,6 +1268,12 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="quantity" Type="Byte" />
           <Property Name="status" Type="Byte" />
           <Property Name="payTotal" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" />
+        </ComplexType>
+        <ComplexType Name="func_getPrecription_notYet_Result">
+          <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HoBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="TenBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="createdAt" Type="DateTime" />
         </ComplexType>
         <ComplexType Name="func_getRelatives_Result">
@@ -1202,6 +1306,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employee" Relationship="Self.CreatedPrescription_Employee_FK" FromRole="CreatedPrescription" ToRole="Employees" />
           <NavigationProperty Name="Patient" Relationship="Self.CreatedPrescription_Patient_FK" FromRole="CreatedPrescription" ToRole="Patients" />
           <NavigationProperty Name="Prescription" Relationship="Self.CreatedPrescription_Prescription_FK" FromRole="CreatedPrescription" ToRole="Prescriptions" />
@@ -1306,7 +1411,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="payTotal" Type="Int32" />
           <Property Name="status" Type="Byte" Nullable="false" />
-          <Property Name="createdAt" Type="DateTime" Precision="0" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Employee" Relationship="Self.employeePay" FromRole="Pay" ToRole="Employees" />
           <NavigationProperty Name="Patient" Relationship="Self.patientPay" FromRole="Pay" ToRole="Patients" />
           <NavigationProperty Name="Receipt" Relationship="Self.receiptPay" FromRole="Pay" ToRole="Receipts" />
@@ -1361,7 +1466,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="receiptName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Byte" Nullable="false" />
-          <Property Name="createdAt" Type="DateTime" Precision="0" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
           <Property Name="updatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pays" Relationship="Self.receiptPay" FromRole="Receipts" ToRole="Pay" />
         </EntityType>
@@ -1464,6 +1569,28 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="preliminaryDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
           <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
           <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_ListMedicine_Precesciption">
+          <Key>
+            <PropertyRef Name="prescriptionID" />
+            <PropertyRef Name="patientID" />
+            <PropertyRef Name="employeeID" />
+            <PropertyRef Name="medicineID" />
+            <PropertyRef Name="medicineName" />
+            <PropertyRef Name="quanlity" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="medicineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="medicineName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quanlity" Type="Int32" Nullable="false" />
+          <Property Name="medicinePrice" Type="Int32" />
+          <Property Name="totalPrice" Type="Int32" />
           <Property Name="createdAt" Type="DateTime" Precision="3" />
           <Property Name="status" Type="Byte" Nullable="false" />
         </EntityType>
@@ -1758,6 +1885,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <EntitySet Name="View_CreatedPrescription_New" EntityType="Self.View_CreatedPrescription_New" />
           <EntitySet Name="View_Doctor" EntityType="Self.View_Doctor" />
           <EntitySet Name="View_Examination" EntityType="Self.View_Examination" />
+          <EntitySet Name="View_ListMedicine_Precesciption" EntityType="Self.View_ListMedicine_Precesciption" />
           <EntitySet Name="View_MedicineGroup_ConvertID" EntityType="Self.View_MedicineGroup_ConvertID" />
           <EntitySet Name="View_Patients" EntityType="Self.View_Patients" />
           <EntitySet Name="View_Patients_Wait" EntityType="Self.View_Patients_Wait" />
@@ -1829,7 +1957,13 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <FunctionImport Name="func_getExamWithID" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getExamWithID_Result)">
           <Parameter Name="examID" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="func_getListMedicion_withExamID" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getListMedicion_withExamID_Result)">
+          <Parameter Name="examID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="func_getListService_notYet" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getListService_notYet_Result)">
+          <Parameter Name="patientID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="func_getPrecription_notYet" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getPrecription_notYet_Result)">
           <Parameter Name="patientID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="func_getRelatives" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getRelatives_Result)">
@@ -1901,13 +2035,29 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <Parameter Name="patientID" Mode="In" Type="String" />
             <Parameter Name="employeeID" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="proc_InsertPay">
+            <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="employeeID" Mode="In" Type="String" />
+            <Parameter Name="receiptID" Mode="In" Type="String" />
+            <Parameter Name="payTotal" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_InsertReceipt">
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="employeeID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="proc_InsertUsingService">
             <Parameter Name="patientID" Mode="In" Type="String" />
             <Parameter Name="serviceID" Mode="In" Type="String" />
             <Parameter Name="quantity" Mode="In" Type="Byte" />
           </FunctionImport>
+          <FunctionImport Name="proc_Pay_Medicine">
+            <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="employeeID" Mode="In" Type="String" />
+            <Parameter Name="examinationID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="proc_Pay_service">
-          <Parameter Name="patientID" Mode="In" Type="String" />
+            <Parameter Name="patientID" Mode="In" Type="String" />
             <Parameter Name="employeeID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_UpdateUsingService">
@@ -2034,17 +2184,6 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
             <Parameter Name="patientID" Mode="In" Type="String" />
             <Parameter Name="relativeID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="proc_InsertPay">
-            <Parameter Name="patientID" Mode="In" Type="String" />
-            <Parameter Name="employeeID" Mode="In" Type="String" />
-            <Parameter Name="receiptID" Mode="In" Type="String" />
-            <Parameter Name="payTotal" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="proc_InsertReceipt">
-            <Parameter Name="type" Mode="In" Type="String" />
-            <Parameter Name="patientID" Mode="In" Type="String" />
-            <Parameter Name="employeeID" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="FindAllDoctor_Result">
           <Property Type="String" Name="doctorID" Nullable="false" MaxLength="20" />
@@ -2152,6 +2291,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
                 <ScalarProperty Name="patientID" ColumnName="patientID" />
                 <ScalarProperty Name="employeeID" ColumnName="employeeID" />
                 <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
+                <ScalarProperty Name="examinateID" ColumnName="examinateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2377,6 +2517,23 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="View_ListMedicine_Precesciption">
+            <EntityTypeMapping TypeName="QLHSBAModel.View_ListMedicine_Precesciption">
+              <MappingFragment StoreEntitySet="View_ListMedicine_Precesciption">
+                <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
+                <ScalarProperty Name="examinateID" ColumnName="examinateID" />
+                <ScalarProperty Name="patientID" ColumnName="patientID" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+                <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+                <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+                <ScalarProperty Name="medicinePrice" ColumnName="medicinePrice" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="View_MedicineGroup_ConvertID">
             <EntityTypeMapping TypeName="QLHSBAModel.View_MedicineGroup_ConvertID">
               <MappingFragment StoreEntitySet="View_MedicineGroup_ConvertID">
@@ -2487,6 +2644,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
                 <ScalarProperty Name="finalDiagnosis" ColumnName="finalDiagnosis" />
                 <ScalarProperty Name="treatmentDirection" ColumnName="treatmentDirection" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2511,6 +2669,24 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
                 <ScalarProperty Name="finalDiagnosis" ColumnName="finalDiagnosis" />
                 <ScalarProperty Name="treatmentDirection" ColumnName="treatmentDirection" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_getListMedicion_withExamID" FunctionImportName="func_getListMedicion_withExamID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLHSBAModel.func_getListMedicion_withExamID_Result">
+                <ScalarProperty Name="prescriptionID" ColumnName="prescriptionID" />
+                <ScalarProperty Name="examinateID" ColumnName="examinateID" />
+                <ScalarProperty Name="patientID" ColumnName="patientID" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="medicineID" ColumnName="medicineID" />
+                <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+                <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+                <ScalarProperty Name="medicinePrice" ColumnName="medicinePrice" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2525,6 +2701,16 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="payTotal" ColumnName="payTotal" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QLHSBAModel.Store.func_getPrecription_notYet" FunctionImportName="func_getPrecription_notYet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLHSBAModel.func_getPrecription_notYet_Result">
+                <ScalarProperty Name="examinateID" ColumnName="examinateID" />
+                <ScalarProperty Name="HoBacSi" ColumnName="HoBacSi" />
+                <ScalarProperty Name="TenBacSi" ColumnName="TenBacSi" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -2610,7 +2796,10 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <FunctionImportMapping FunctionImportName="InsertRelative_Exist" FunctionName="QLHSBAModel.Store.InsertRelative_Exist" />
           <FunctionImportMapping FunctionImportName="InsertStaff" FunctionName="QLHSBAModel.Store.InsertStaff" />
           <FunctionImportMapping FunctionImportName="proc_createNewNullExamination" FunctionName="QLHSBAModel.Store.proc_createNewNullExamination" />
+          <FunctionImportMapping FunctionImportName="proc_InsertPay" FunctionName="QLHSBAModel.Store.proc_InsertPay" />
+          <FunctionImportMapping FunctionImportName="proc_InsertReceipt" FunctionName="QLHSBAModel.Store.proc_InsertReceipt" />
           <FunctionImportMapping FunctionImportName="proc_InsertUsingService" FunctionName="QLHSBAModel.Store.proc_InsertUsingService" />
+          <FunctionImportMapping FunctionImportName="proc_Pay_Medicine" FunctionName="QLHSBAModel.Store.proc_Pay_Medicine" />
           <FunctionImportMapping FunctionImportName="proc_Pay_service" FunctionName="QLHSBAModel.Store.proc_Pay_service" />
           <FunctionImportMapping FunctionImportName="proc_UpdateUsingService" FunctionName="QLHSBAModel.Store.proc_UpdateUsingService" />
           <FunctionImportMapping FunctionImportName="spCountPatientsWait" FunctionName="QLHSBAModel.Store.spCountPatientsWait" />
@@ -2690,8 +2879,6 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <FunctionImportMapping FunctionImportName="UpdateDoctor_Staff" FunctionName="QLHSBAModel.Store.UpdateDoctor_Staff" />
           <FunctionImportMapping FunctionImportName="UpdatePatient" FunctionName="QLHSBAModel.Store.UpdatePatient" />
           <FunctionImportMapping FunctionImportName="UpdateRelative" FunctionName="QLHSBAModel.Store.UpdateRelative" />
-          <FunctionImportMapping FunctionImportName="proc_InsertPay" FunctionName="QLHSBAModel.Store.proc_InsertPay" />
-          <FunctionImportMapping FunctionImportName="proc_InsertReceipt" FunctionName="QLHSBAModel.Store.proc_InsertReceipt" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

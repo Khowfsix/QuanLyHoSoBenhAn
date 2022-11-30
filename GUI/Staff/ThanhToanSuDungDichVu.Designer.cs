@@ -1,6 +1,6 @@
 ﻿namespace GUI.Staff
 {
-    partial class payUsingService
+    partial class ThanhToanSuDungDichVu
     {
         /// <summary>
         /// Required designer variable.

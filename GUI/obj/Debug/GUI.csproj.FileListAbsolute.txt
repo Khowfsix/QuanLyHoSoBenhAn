@@ -145,4 +145,5 @@ D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.Doctor.frmMedicine.resources
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.Doctor.frmMedicineGroup.resources
 D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.Doctor.frmPrescription.resources
-D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.Staff.payUsingService.resources
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.Staff.ThanhToanDonThuoc.resources
+D:\UTE\Year_3\HK_1\He quan tri co so du lieu\project\github\QuanLyHoSoBenhAn\GUI\obj\Debug\GUI.Staff.ThanhToanSuDungDichVu.resources

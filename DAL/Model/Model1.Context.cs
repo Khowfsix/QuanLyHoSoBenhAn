@@ -45,6 +45,7 @@ namespace DAL.Model
         public virtual DbSet<View_CreatedPrescription_New> View_CreatedPrescription_New { get; set; }
         public virtual DbSet<View_Doctor> View_Doctor { get; set; }
         public virtual DbSet<View_Examination> View_Examination { get; set; }
+        public virtual DbSet<View_ListMedicine_Precesciption> View_ListMedicine_Precesciption { get; set; }
         public virtual DbSet<View_MedicineGroup_ConvertID> View_MedicineGroup_ConvertID { get; set; }
         public virtual DbSet<View_Patients> View_Patients { get; set; }
         public virtual DbSet<View_Patients_Wait> View_Patients_Wait { get; set; }
@@ -71,6 +72,16 @@ namespace DAL.Model
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_getExamWithID_Result>("[QLHSBAEntities].[func_getExamWithID](@examID)", examIDParameter);
         }
     
+        [DbFunction("QLHSBAEntities", "func_getListMedicion_withExamID")]
+        public virtual IQueryable<func_getListMedicion_withExamID_Result> func_getListMedicion_withExamID(string examID)
+        {
+            var examIDParameter = examID != null ?
+                new ObjectParameter("examID", examID) :
+                new ObjectParameter("examID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_getListMedicion_withExamID_Result>("[QLHSBAEntities].[func_getListMedicion_withExamID](@examID)", examIDParameter);
+        }
+    
         [DbFunction("QLHSBAEntities", "func_getListService_notYet")]
         public virtual IQueryable<func_getListService_notYet_Result> func_getListService_notYet(string patientID)
         {
@@ -79,6 +90,16 @@ namespace DAL.Model
                 new ObjectParameter("patientID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_getListService_notYet_Result>("[QLHSBAEntities].[func_getListService_notYet](@patientID)", patientIDParameter);
+        }
+    
+        [DbFunction("QLHSBAEntities", "func_getPrecription_notYet")]
+        public virtual IQueryable<func_getPrecription_notYet_Result> func_getPrecription_notYet(string patientID)
+        {
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_getPrecription_notYet_Result>("[QLHSBAEntities].[func_getPrecription_notYet](@patientID)", patientIDParameter);
         }
     
         [DbFunction("QLHSBAEntities", "func_getRelatives")]
@@ -330,6 +351,44 @@ namespace DAL.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_createNewNullExamination", patientIDParameter, employeeIDParameter);
         }
     
+        public virtual int proc_InsertPay(string patientID, string employeeID, string receiptID, Nullable<int> payTotal)
+        {
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
+    
+            var employeeIDParameter = employeeID != null ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(string));
+    
+            var receiptIDParameter = receiptID != null ?
+                new ObjectParameter("receiptID", receiptID) :
+                new ObjectParameter("receiptID", typeof(string));
+    
+            var payTotalParameter = payTotal.HasValue ?
+                new ObjectParameter("payTotal", payTotal) :
+                new ObjectParameter("payTotal", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertPay", patientIDParameter, employeeIDParameter, receiptIDParameter, payTotalParameter);
+        }
+    
+        public virtual int proc_InsertReceipt(string type, string patientID, string employeeID)
+        {
+            var typeParameter = type != null ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(string));
+    
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
+    
+            var employeeIDParameter = employeeID != null ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertReceipt", typeParameter, patientIDParameter, employeeIDParameter);
+        }
+    
         public virtual int proc_InsertUsingService(string patientID, string serviceID, Nullable<byte> quantity)
         {
             var patientIDParameter = patientID != null ?
@@ -345,6 +404,23 @@ namespace DAL.Model
                 new ObjectParameter("quantity", typeof(byte));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertUsingService", patientIDParameter, serviceIDParameter, quantityParameter);
+        }
+    
+        public virtual int proc_Pay_Medicine(string patientID, string employeeID, string examinationID)
+        {
+            var patientIDParameter = patientID != null ?
+                new ObjectParameter("patientID", patientID) :
+                new ObjectParameter("patientID", typeof(string));
+    
+            var employeeIDParameter = employeeID != null ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(string));
+    
+            var examinationIDParameter = examinationID != null ?
+                new ObjectParameter("examinationID", examinationID) :
+                new ObjectParameter("examinationID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Pay_Medicine", patientIDParameter, employeeIDParameter, examinationIDParameter);
         }
     
         public virtual int proc_Pay_service(string patientID, string employeeID)
@@ -802,44 +878,6 @@ namespace DAL.Model
                 new ObjectParameter("relativeID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateRelative", relativeFirstNameParameter, relativeLastnameParameter, sexParameter, birthDayParameter, addressParameter, phoneParameter, cardIDParameter, patientIDParameter, relativeIDParameter);
-        }
-    
-        public virtual int proc_InsertPay(string patientID, string employeeID, string receiptID, Nullable<int> payTotal)
-        {
-            var patientIDParameter = patientID != null ?
-                new ObjectParameter("patientID", patientID) :
-                new ObjectParameter("patientID", typeof(string));
-    
-            var employeeIDParameter = employeeID != null ?
-                new ObjectParameter("employeeID", employeeID) :
-                new ObjectParameter("employeeID", typeof(string));
-    
-            var receiptIDParameter = receiptID != null ?
-                new ObjectParameter("receiptID", receiptID) :
-                new ObjectParameter("receiptID", typeof(string));
-    
-            var payTotalParameter = payTotal.HasValue ?
-                new ObjectParameter("payTotal", payTotal) :
-                new ObjectParameter("payTotal", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertPay", patientIDParameter, employeeIDParameter, receiptIDParameter, payTotalParameter);
-        }
-    
-        public virtual int proc_InsertReceipt(string type, string patientID, string employeeID)
-        {
-            var typeParameter = type != null ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(string));
-    
-            var patientIDParameter = patientID != null ?
-                new ObjectParameter("patientID", patientID) :
-                new ObjectParameter("patientID", typeof(string));
-    
-            var employeeIDParameter = employeeID != null ?
-                new ObjectParameter("employeeID", employeeID) :
-                new ObjectParameter("employeeID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertReceipt", typeParameter, patientIDParameter, employeeIDParameter);
         }
     }
 }

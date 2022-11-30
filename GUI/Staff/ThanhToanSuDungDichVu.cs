@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace GUI.Staff
 {
-    public partial class payUsingService : Form
+    public partial class ThanhToanSuDungDichVu : Form
     {
         UsingServiceBUS_impl usingServiceBUS = new UsingServiceBUS_impl();
         string patientID;
         string employeeID;
 
-        public payUsingService(string patientID, string employeeID)
+        public ThanhToanSuDungDichVu(string patientID, string employeeID)
         {
             InitializeComponent();
             this.patientID = patientID;

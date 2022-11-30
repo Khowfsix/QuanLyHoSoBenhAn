@@ -63,15 +63,16 @@
             this.doctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnInfoExam = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Relatives)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(207, 359);
+            this.btnUpdate.Location = new System.Drawing.Point(397, 377);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(167, 44);
+            this.btnUpdate.Size = new System.Drawing.Size(378, 44);
             this.btnUpdate.TabIndex = 63;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -285,7 +286,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(392, 359);
+            this.label13.Location = new System.Drawing.Point(25, 435);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(217, 25);
             this.label13.TabIndex = 64;
@@ -298,9 +299,9 @@
             this.dataGridView_Relatives.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.name});
-            this.dataGridView_Relatives.Location = new System.Drawing.Point(397, 402);
+            this.dataGridView_Relatives.Location = new System.Drawing.Point(30, 484);
             this.dataGridView_Relatives.Name = "dataGridView_Relatives";
-            this.dataGridView_Relatives.Size = new System.Drawing.Size(244, 221);
+            this.dataGridView_Relatives.Size = new System.Drawing.Size(611, 139);
             this.dataGridView_Relatives.TabIndex = 65;
             // 
             // ID
@@ -315,9 +316,9 @@
             // 
             // btnAddRelative
             // 
-            this.btnAddRelative.Location = new System.Drawing.Point(663, 402);
+            this.btnAddRelative.Location = new System.Drawing.Point(663, 484);
             this.btnAddRelative.Name = "btnAddRelative";
-            this.btnAddRelative.Size = new System.Drawing.Size(117, 221);
+            this.btnAddRelative.Size = new System.Drawing.Size(117, 139);
             this.btnAddRelative.TabIndex = 66;
             this.btnAddRelative.Text = "Thêm người thân";
             this.btnAddRelative.UseVisualStyleBackColor = true;
@@ -327,7 +328,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(25, 428);
+            this.label14.Location = new System.Drawing.Point(835, 34);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(196, 25);
             this.label14.TabIndex = 68;
@@ -341,9 +342,9 @@
             this.IDexam,
             this.doctor,
             this.date});
-            this.dataGridViewHistory.Location = new System.Drawing.Point(30, 468);
+            this.dataGridViewHistory.Location = new System.Drawing.Point(840, 83);
             this.dataGridViewHistory.Name = "dataGridViewHistory";
-            this.dataGridViewHistory.Size = new System.Drawing.Size(344, 155);
+            this.dataGridViewHistory.Size = new System.Drawing.Size(424, 447);
             this.dataGridViewHistory.TabIndex = 67;
             // 
             // IDexam
@@ -366,19 +367,31 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(30, 359);
+            this.btnAdd.Location = new System.Drawing.Point(30, 377);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(149, 44);
+            this.btnAdd.Size = new System.Drawing.Size(334, 44);
             this.btnAdd.TabIndex = 69;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnInfoExam
+            // 
+            this.btnInfoExam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInfoExam.Location = new System.Drawing.Point(840, 557);
+            this.btnInfoExam.Name = "btnInfoExam";
+            this.btnInfoExam.Size = new System.Drawing.Size(424, 66);
+            this.btnInfoExam.TabIndex = 70;
+            this.btnInfoExam.Text = "Xem thông tin lần khám";
+            this.btnInfoExam.UseVisualStyleBackColor = true;
+            this.btnInfoExam.Click += new System.EventHandler(this.btnInfoExam_Click);
+            // 
             // ThongtinBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 635);
+            this.ClientSize = new System.Drawing.Size(1289, 635);
+            this.Controls.Add(this.btnInfoExam);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.dataGridViewHistory);
@@ -456,5 +469,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn doctor;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnInfoExam;
     }
 }

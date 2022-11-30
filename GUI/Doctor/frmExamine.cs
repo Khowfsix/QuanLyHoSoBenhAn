@@ -30,8 +30,7 @@ namespace GUI.Doctor
 
         private void FindAllPatientWait()
         {
-            
-            /*patientBUS.FindAllPatientWait(dgvPatientWait);*/
+            patientBUS.FindAllPatientWait(dgvPatientWait);
         }
 
         private void frmExamine_Load(object sender, EventArgs e)

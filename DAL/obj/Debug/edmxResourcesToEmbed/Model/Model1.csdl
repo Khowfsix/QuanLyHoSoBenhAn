@@ -19,6 +19,7 @@
     <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="createdAt" Type="DateTime" />
+    <Property Name="status" Type="Int32" />
   </ComplexType>
   <ComplexType Name="func_getExamWithID_Result">
     <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -39,6 +40,20 @@
     <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="createdAt" Type="DateTime" />
+    <Property Name="status" Type="Int32" />
+  </ComplexType>
+  <ComplexType Name="func_getListMedicion_withExamID_Result">
+    <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="medicineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="medicineName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="quanlity" Type="Int32" />
+    <Property Name="medicinePrice" Type="Int32" />
+    <Property Name="totalPrice" Type="Int32" />
+    <Property Name="createdAt" Type="DateTime" />
+    <Property Name="status" Type="Byte" />
   </ComplexType>
   <ComplexType Name="func_getListService_notYet_Result">
     <Property Name="usingServiceID" Type="Int32" />
@@ -49,6 +64,12 @@
     <Property Name="quantity" Type="Byte" />
     <Property Name="status" Type="Byte" />
     <Property Name="payTotal" Type="Int32" />
+    <Property Name="createdAt" Type="DateTime" />
+  </ComplexType>
+  <ComplexType Name="func_getPrecription_notYet_Result">
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HoBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="TenBacSi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
     <Property Name="createdAt" Type="DateTime" />
   </ComplexType>
   <ComplexType Name="func_getRelatives_Result">
@@ -81,6 +102,7 @@
     <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Employee" Relationship="Self.CreatedPrescription_Employee_FK" FromRole="CreatedPrescription" ToRole="Employees" />
     <NavigationProperty Name="Patient" Relationship="Self.CreatedPrescription_Patient_FK" FromRole="CreatedPrescription" ToRole="Patients" />
     <NavigationProperty Name="Prescription" Relationship="Self.CreatedPrescription_Prescription_FK" FromRole="CreatedPrescription" ToRole="Prescriptions" />
@@ -185,7 +207,7 @@
     <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="payTotal" Type="Int32" />
     <Property Name="status" Type="Byte" Nullable="false" />
-    <Property Name="createdAt" Type="DateTime" Precision="0" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Employee" Relationship="Self.employeePay" FromRole="Pay" ToRole="Employees" />
     <NavigationProperty Name="Patient" Relationship="Self.patientPay" FromRole="Pay" ToRole="Patients" />
     <NavigationProperty Name="Receipt" Relationship="Self.receiptPay" FromRole="Pay" ToRole="Receipts" />
@@ -240,7 +262,7 @@
     <Property Name="receiptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="receiptName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Byte" Nullable="false" />
-    <Property Name="createdAt" Type="DateTime" Precision="0" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="updatedAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Pays" Relationship="Self.receiptPay" FromRole="Receipts" ToRole="Pay" />
   </EntityType>
@@ -343,6 +365,28 @@
     <Property Name="preliminaryDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="finalDiagnosis" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
     <Property Name="treatmentDirection" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_ListMedicine_Precesciption">
+    <Key>
+      <PropertyRef Name="prescriptionID" />
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="employeeID" />
+      <PropertyRef Name="medicineID" />
+      <PropertyRef Name="medicineName" />
+      <PropertyRef Name="quanlity" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="prescriptionID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="examinateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="patientID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medicineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medicineName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quanlity" Type="Int32" Nullable="false" />
+    <Property Name="medicinePrice" Type="Int32" />
+    <Property Name="totalPrice" Type="Int32" />
     <Property Name="createdAt" Type="DateTime" Precision="3" />
     <Property Name="status" Type="Byte" Nullable="false" />
   </EntityType>
@@ -637,6 +681,7 @@
     <EntitySet Name="View_CreatedPrescription_New" EntityType="Self.View_CreatedPrescription_New" />
     <EntitySet Name="View_Doctor" EntityType="Self.View_Doctor" />
     <EntitySet Name="View_Examination" EntityType="Self.View_Examination" />
+    <EntitySet Name="View_ListMedicine_Precesciption" EntityType="Self.View_ListMedicine_Precesciption" />
     <EntitySet Name="View_MedicineGroup_ConvertID" EntityType="Self.View_MedicineGroup_ConvertID" />
     <EntitySet Name="View_Patients" EntityType="Self.View_Patients" />
     <EntitySet Name="View_Patients_Wait" EntityType="Self.View_Patients_Wait" />
@@ -708,7 +753,13 @@
     <FunctionImport Name="func_getExamWithID" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getExamWithID_Result)">
       <Parameter Name="examID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="func_getListMedicion_withExamID" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getListMedicion_withExamID_Result)">
+      <Parameter Name="examID" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="func_getListService_notYet" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getListService_notYet_Result)">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="func_getPrecription_notYet" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getPrecription_notYet_Result)">
       <Parameter Name="patientID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="func_getRelatives" IsComposable="true" ReturnType="Collection(QLHSBAModel.func_getRelatives_Result)">
@@ -780,10 +831,26 @@
       <Parameter Name="patientID" Mode="In" Type="String" />
       <Parameter Name="employeeID" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="proc_InsertPay">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+      <Parameter Name="receiptID" Mode="In" Type="String" />
+      <Parameter Name="payTotal" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertReceipt">
+      <Parameter Name="type" Mode="In" Type="String" />
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="proc_InsertUsingService">
       <Parameter Name="patientID" Mode="In" Type="String" />
       <Parameter Name="serviceID" Mode="In" Type="String" />
       <Parameter Name="quantity" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Pay_Medicine">
+      <Parameter Name="patientID" Mode="In" Type="String" />
+      <Parameter Name="employeeID" Mode="In" Type="String" />
+      <Parameter Name="examinationID" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_Pay_service">
       <Parameter Name="patientID" Mode="In" Type="String" />
@@ -912,17 +979,6 @@
       <Parameter Name="cardID" Mode="In" Type="String" />
       <Parameter Name="patientID" Mode="In" Type="String" />
       <Parameter Name="relativeID" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="proc_InsertPay">
-      <Parameter Name="patientID" Mode="In" Type="String" />
-      <Parameter Name="employeeID" Mode="In" Type="String" />
-      <Parameter Name="receiptID" Mode="In" Type="String" />
-      <Parameter Name="payTotal" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="proc_InsertReceipt">
-      <Parameter Name="type" Mode="In" Type="String" />
-      <Parameter Name="patientID" Mode="In" Type="String" />
-      <Parameter Name="employeeID" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="FindAllDoctor_Result">

@@ -38,10 +38,6 @@
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnInfo = new System.Windows.Forms.Button();
-            this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
-            this.IDexam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.doctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIDpatient = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,7 +57,6 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtCardID = new System.Windows.Forms.TextBox();
             this.txtJob = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.btnFinding = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnExam = new System.Windows.Forms.Button();
@@ -70,7 +65,6 @@
             this.btnPay_service = new System.Windows.Forms.Button();
             this.btnPay_medicine = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInfoPatient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewInfoPatient
@@ -142,45 +136,14 @@
             // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(384, 229);
+            this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInfo.Location = new System.Drawing.Point(790, 52);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(378, 86);
+            this.btnInfo.Size = new System.Drawing.Size(344, 149);
             this.btnInfo.TabIndex = 1;
-            this.btnInfo.Text = "Thông tin chi tiết";
+            this.btnInfo.Text = "Hồ sơ bệnh án";
             this.btnInfo.UseVisualStyleBackColor = true;
             this.btnInfo.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // dataGridViewHistory
-            // 
-            this.dataGridViewHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDexam,
-            this.doctor,
-            this.date});
-            this.dataGridViewHistory.Location = new System.Drawing.Point(790, 85);
-            this.dataGridViewHistory.Name = "dataGridViewHistory";
-            this.dataGridViewHistory.Size = new System.Drawing.Size(344, 230);
-            this.dataGridViewHistory.TabIndex = 5;
-            this.dataGridViewHistory.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHistory_CellContentDoubleClick);
-            // 
-            // IDexam
-            // 
-            this.IDexam.HeaderText = "ID đơn khám";
-            this.IDexam.Name = "IDexam";
-            this.IDexam.ReadOnly = true;
-            // 
-            // doctor
-            // 
-            this.doctor.HeaderText = "Bác sĩ khám";
-            this.doctor.Name = "doctor";
-            this.doctor.ReadOnly = true;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Ngày khám";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
             // 
             // label1
             // 
@@ -350,16 +313,6 @@
             this.txtJob.Size = new System.Drawing.Size(262, 20);
             this.txtJob.TabIndex = 28;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(785, 37);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(196, 25);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "Tiền sử khám bệnh";
-            // 
             // btnFinding
             // 
             this.btnFinding.Location = new System.Drawing.Point(17, 273);
@@ -382,9 +335,9 @@
             // btnExam
             // 
             this.btnExam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExam.Location = new System.Drawing.Point(790, 340);
+            this.btnExam.Location = new System.Drawing.Point(790, 322);
             this.btnExam.Name = "btnExam";
-            this.btnExam.Size = new System.Drawing.Size(344, 52);
+            this.btnExam.Size = new System.Drawing.Size(344, 70);
             this.btnExam.TabIndex = 34;
             this.btnExam.Text = "Khám";
             this.btnExam.UseVisualStyleBackColor = true;
@@ -402,9 +355,10 @@
             // 
             // btnUsingService
             // 
-            this.btnUsingService.Location = new System.Drawing.Point(384, 340);
+            this.btnUsingService.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsingService.Location = new System.Drawing.Point(384, 322);
             this.btnUsingService.Name = "btnUsingService";
-            this.btnUsingService.Size = new System.Drawing.Size(378, 52);
+            this.btnUsingService.Size = new System.Drawing.Size(378, 70);
             this.btnUsingService.TabIndex = 36;
             this.btnUsingService.Text = "Sử dụng dịch vụ";
             this.btnUsingService.UseVisualStyleBackColor = true;
@@ -413,9 +367,9 @@
             // btnPay_service
             // 
             this.btnPay_service.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPay_service.Location = new System.Drawing.Point(1178, 37);
+            this.btnPay_service.Location = new System.Drawing.Point(384, 220);
             this.btnPay_service.Name = "btnPay_service";
-            this.btnPay_service.Size = new System.Drawing.Size(93, 297);
+            this.btnPay_service.Size = new System.Drawing.Size(378, 83);
             this.btnPay_service.TabIndex = 37;
             this.btnPay_service.Text = "Thanh toán dịch vụ";
             this.btnPay_service.UseVisualStyleBackColor = true;
@@ -424,9 +378,9 @@
             // btnPay_medicine
             // 
             this.btnPay_medicine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPay_medicine.Location = new System.Drawing.Point(1178, 360);
+            this.btnPay_medicine.Location = new System.Drawing.Point(790, 221);
             this.btnPay_medicine.Name = "btnPay_medicine";
-            this.btnPay_medicine.Size = new System.Drawing.Size(93, 297);
+            this.btnPay_medicine.Size = new System.Drawing.Size(344, 82);
             this.btnPay_medicine.TabIndex = 38;
             this.btnPay_medicine.Text = "Thanh toán đơn thuốc";
             this.btnPay_medicine.UseVisualStyleBackColor = true;
@@ -436,7 +390,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1296, 669);
+            this.ClientSize = new System.Drawing.Size(1163, 669);
             this.Controls.Add(this.btnPay_medicine);
             this.Controls.Add(this.btnPay_service);
             this.Controls.Add(this.btnUsingService);
@@ -444,7 +398,6 @@
             this.Controls.Add(this.btnExam);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnFinding);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.txtJob);
             this.Controls.Add(this.txtCardID);
             this.Controls.Add(this.txtPhone);
@@ -464,14 +417,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtIDpatient);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridViewHistory);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.dataGridViewInfoPatient);
             this.Name = "TiepNhanBenhNhan";
             this.Text = "ThongTinBenhNhan";
             this.Load += new System.EventHandler(this.TiepNhanBenhNhan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInfoPatient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -481,7 +432,6 @@
 
         private System.Windows.Forms.DataGridView dataGridViewInfoPatient;
         private System.Windows.Forms.Button btnInfo;
-        private System.Windows.Forms.DataGridView dataGridViewHistory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIDpatient;
         private System.Windows.Forms.Label label2;
@@ -501,10 +451,6 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtCardID;
         private System.Windows.Forms.TextBox txtJob;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDexam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doctor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.Button btnFinding;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnExam;

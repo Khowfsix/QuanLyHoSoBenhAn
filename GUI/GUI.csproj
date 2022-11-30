@@ -100,17 +100,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Staff\payUsingService.cs">
+    <Compile Include="Staff\ThanhToanSuDungDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Staff\payUsingService.Designer.cs">
-      <DependentUpon>payUsingService.cs</DependentUpon>
+    <Compile Include="Staff\ThanhToanSuDungDichVu.Designer.cs">
+      <DependentUpon>ThanhToanSuDungDichVu.cs</DependentUpon>
     </Compile>
     <Compile Include="Staff\SuDungDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Staff\SuDungDichVu.designer.cs">
       <DependentUpon>SuDungDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\ThanhToanDonThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staff\ThanhToanDonThuoc.Designer.cs">
+      <DependentUpon>ThanhToanDonThuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Staff\ThemThanNhan.cs">
       <SubType>Form</SubType>
@@ -169,8 +175,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Staff\payUsingService.resx">
-      <DependentUpon>payUsingService.cs</DependentUpon>
+    <EmbeddedResource Include="Staff\ThanhToanDonThuoc.resx">
+      <DependentUpon>ThanhToanDonThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staff\ThanhToanSuDungDichVu.resx">
+      <DependentUpon>ThanhToanSuDungDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Staff\SuDungDichVu.resx">
       <DependentUpon>SuDungDichVu.cs</DependentUpon>

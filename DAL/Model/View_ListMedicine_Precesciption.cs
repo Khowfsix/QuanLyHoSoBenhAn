@@ -12,16 +12,18 @@ namespace DAL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CreatedPrescription
+    public partial class View_ListMedicine_Precesciption
     {
-        public int C_id { get; set; }
-        public string patientID { get; set; }
-        public string employeeID { get; set; }
         public string prescriptionID { get; set; }
         public string examinateID { get; set; }
-    
-        public virtual Employee Employee { get; set; }
-        public virtual Patient Patient { get; set; }
-        public virtual Prescription Prescription { get; set; }
+        public string patientID { get; set; }
+        public string employeeID { get; set; }
+        public string medicineID { get; set; }
+        public string medicineName { get; set; }
+        public int quanlity { get; set; }
+        public Nullable<int> medicinePrice { get; set; }
+        public Nullable<int> totalPrice { get; set; }
+        public Nullable<System.DateTime> createdAt { get; set; }
+        public byte status { get; set; }
     }
 }

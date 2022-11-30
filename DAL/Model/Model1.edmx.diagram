@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dd9835033e594682bb82810d0e2f9830" Name="Diagram1">
-        <EntityTypeShape EntityType="QLHSBAModel.Account" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
+      <Diagram DiagramId="7a59d6039f6f4720bdb5a61dd0947875" Name="Diagram1">
+        <EntityTypeShape EntityType="QLHSBAModel.Account" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.CreatedPrescription" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Department" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Employee" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Examination" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.MedicineGroup" Width="1.5" PointX="5.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.Medicine" Width="1.5" PointX="7.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.MedicineGroup" Width="1.5" PointX="5.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.Medicine" Width="1.5" PointX="7.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Patient" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Pay" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Person" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
@@ -20,14 +20,15 @@
         <EntityTypeShape EntityType="QLHSBAModel.Receipt" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.Service" Width="1.5" PointX="0.75" PointY="25.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLHSBAModel.UsingService" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_CreatedPrescription_New" Width="1.5" PointX="8.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_Doctor" Width="1.5" PointX="9.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_Examination" Width="1.5" PointX="8.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_MedicineGroup_ConvertID" Width="1.5" PointX="10.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_Patients" Width="1.5" PointX="10.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_Patients_Wait" Width="1.5" PointX="11.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_Staff" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLHSBAModel.View_UsingService" Width="1.5" PointX="5.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_CreatedPrescription_New" Width="1.5" PointX="8.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Doctor" Width="1.5" PointX="9.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Examination" Width="1.5" PointX="8.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_ListMedicine_Precesciption" Width="1.5" PointX="10.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_MedicineGroup_ConvertID" Width="1.5" PointX="10.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Patients" Width="1.5" PointX="11.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Patients_Wait" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_Staff" Width="1.5" PointX="5.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHSBAModel.View_UsingService" Width="1.5" PointX="12.75" PointY="13.375" IsExpanded="true" />
         <AssociationConnector Association="QLHSBAModel.CreatedPrescription_Employee_FK" ManuallyRouted="false" />
         <AssociationConnector Association="QLHSBAModel.CreatedPrescription_Patient_FK" ManuallyRouted="false" />
         <AssociationConnector Association="QLHSBAModel.CreatedPrescription_Prescription_FK" ManuallyRouted="false" />

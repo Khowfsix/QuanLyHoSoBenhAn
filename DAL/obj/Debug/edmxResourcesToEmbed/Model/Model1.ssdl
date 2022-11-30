@@ -20,6 +20,7 @@
     <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="examinateID" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>
@@ -108,7 +109,7 @@
     <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="payTotal" Type="int" />
     <Property Name="status" Type="tinyint" Nullable="false" />
-    <Property Name="createdAt" Type="date" />
+    <Property Name="createdAt" Type="datetime" />
   </EntityType>
   <EntityType Name="People">
     <Key>
@@ -153,7 +154,7 @@
     <Property Name="receiptID" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="receiptName" Type="nvarchar" MaxLength="255" />
     <Property Name="status" Type="tinyint" Nullable="false" />
-    <Property Name="createdAt" Type="date" />
+    <Property Name="createdAt" Type="datetime" />
     <Property Name="updatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="Relatives">
@@ -266,6 +267,30 @@ warning 6002: The table/view 'QLHSBA.dbo.View_Examination' does not have a prima
     <Property Name="preliminaryDiagnosis" Type="nvarchar" MaxLength="510" />
     <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
     <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
+    <Property Name="createdAt" Type="datetime" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLHSBA.dbo.View_ListMedicine_Precesciption' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_ListMedicine_Precesciption">
+    <Key>
+      <PropertyRef Name="prescriptionID" />
+      <PropertyRef Name="patientID" />
+      <PropertyRef Name="employeeID" />
+      <PropertyRef Name="medicineID" />
+      <PropertyRef Name="medicineName" />
+      <PropertyRef Name="quanlity" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="prescriptionID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="examinateID" Type="varchar" MaxLength="20" />
+    <Property Name="patientID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="medicineName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="quanlity" Type="int" Nullable="false" />
+    <Property Name="medicinePrice" Type="int" />
+    <Property Name="totalPrice" Type="int" />
     <Property Name="createdAt" Type="datetime" />
     <Property Name="status" Type="tinyint" Nullable="false" />
   </EntityType>
@@ -629,6 +654,7 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
           <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
           <Property Name="createdAt" Type="datetime" />
+          <Property Name="status" Type="int" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -656,6 +682,27 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
           <Property Name="finalDiagnosis" Type="nvarchar" MaxLength="510" />
           <Property Name="treatmentDirection" Type="nvarchar" MaxLength="510" />
           <Property Name="createdAt" Type="datetime" />
+          <Property Name="status" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="func_getListMedicion_withExamID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="examID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="prescriptionID" Type="varchar" MaxLength="20" />
+          <Property Name="examinateID" Type="varchar" MaxLength="20" />
+          <Property Name="patientID" Type="varchar" MaxLength="20" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" />
+          <Property Name="medicineID" Type="varchar" MaxLength="20" />
+          <Property Name="medicineName" Type="nvarchar" MaxLength="255" />
+          <Property Name="quanlity" Type="int" />
+          <Property Name="medicinePrice" Type="int" />
+          <Property Name="totalPrice" Type="int" />
+          <Property Name="createdAt" Type="date" />
+          <Property Name="status" Type="tinyint" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -678,6 +725,19 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="func_getPrecription_notYet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="examinateID" Type="varchar" MaxLength="20" />
+          <Property Name="HoBacSi" Type="nvarchar" MaxLength="32" />
+          <Property Name="TenBacSi" Type="nvarchar" MaxLength="32" />
+          <Property Name="createdAt" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="func_GetPrescriptionID_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar" />
   <Function Name="func_getRelatives" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -690,6 +750,9 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
         </RowType>
       </CollectionType>
     </ReturnType>
+  </Function>
+  <Function Name="func_getTotalPay_ListMedicine_withExamID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="examID" Type="varchar" Mode="In" />
   </Function>
   <Function Name="func_getTotalPay_usingService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
     <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -778,6 +841,11 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
     <Parameter Name="patientID" Type="varchar" Mode="In" />
     <Parameter Name="serviceID" Type="varchar" Mode="In" />
     <Parameter Name="quantity" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="proc_Pay_Medicine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientID" Type="varchar" Mode="In" />
+    <Parameter Name="employeeID" Type="varchar" Mode="In" />
+    <Parameter Name="examinationID" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_Pay_service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="patientID" Type="varchar" Mode="In" />
@@ -975,6 +1043,21 @@ warning 6035: The relationship 'Medicine_Prescription_FK' has columns that are n
     [View_Examination].[createdAt] AS [createdAt], 
     [View_Examination].[status] AS [status]
     FROM [dbo].[View_Examination] AS [View_Examination]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_ListMedicine_Precesciption" EntityType="Self.View_ListMedicine_Precesciption" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_ListMedicine_Precesciption].[prescriptionID] AS [prescriptionID], 
+    [View_ListMedicine_Precesciption].[examinateID] AS [examinateID], 
+    [View_ListMedicine_Precesciption].[patientID] AS [patientID], 
+    [View_ListMedicine_Precesciption].[employeeID] AS [employeeID], 
+    [View_ListMedicine_Precesciption].[medicineID] AS [medicineID], 
+    [View_ListMedicine_Precesciption].[medicineName] AS [medicineName], 
+    [View_ListMedicine_Precesciption].[quanlity] AS [quanlity], 
+    [View_ListMedicine_Precesciption].[medicinePrice] AS [medicinePrice], 
+    [View_ListMedicine_Precesciption].[totalPrice] AS [totalPrice], 
+    [View_ListMedicine_Precesciption].[createdAt] AS [createdAt], 
+    [View_ListMedicine_Precesciption].[status] AS [status]
+    FROM [dbo].[View_ListMedicine_Precesciption] AS [View_ListMedicine_Precesciption]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="View_MedicineGroup_ConvertID" EntityType="Self.View_MedicineGroup_ConvertID" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

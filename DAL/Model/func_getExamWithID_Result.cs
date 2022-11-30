@@ -31,5 +31,6 @@ namespace DAL.Model
         public string finalDiagnosis { get; set; }
         public string treatmentDirection { get; set; }
         public Nullable<System.DateTime> createdAt { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

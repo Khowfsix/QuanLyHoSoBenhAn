@@ -62,6 +62,15 @@ namespace GUI.Staff
                     dataGridView_Relatives.Rows[index].Cells[0].Value = item.relativeID;
                     dataGridView_Relatives.Rows[index].Cells[1].Value = item.firstName + " " + item.lastName;
                 }
+
+                dataGridViewHistory.Rows.Clear();
+                foreach (var item in basicInfoPatientBUS.GetHistoryExams(this.basicInfo_Patient.patientID))
+                {
+                    int index = dataGridViewHistory.Rows.Add();
+                    dataGridViewHistory.Rows[index].Cells[0].Value = item.examinateID.Trim();
+                    dataGridViewHistory.Rows[index].Cells[1].Value = item.tenBacSi.Trim() + " " + item.hoBacSi.Trim();
+                    dataGridViewHistory.Rows[index].Cells[2].Value = item.createdAt.Value.Date.ToString();
+                }
             }
         }
 
@@ -122,6 +131,20 @@ namespace GUI.Staff
             string msg = "Đã thêm bệnh nhân";
             MessageBox.Show(msg);
             Dispose();
+        }
+
+        private void btnInfoExam_Click(object sender, EventArgs e)
+        {
+            string idExam = dataGridViewHistory.CurrentRow.Cells[0].Value.ToString();
+            if (idExam.Length < 0)
+            {
+                MessageBox.Show("Chưa chọn đơn khám");
+            }
+            else
+            {
+                ThongTinDonKham thongTinDonKham = new ThongTinDonKham(idExam);
+                thongTinDonKham.ShowDialog();
+            }
         }
     }
 }

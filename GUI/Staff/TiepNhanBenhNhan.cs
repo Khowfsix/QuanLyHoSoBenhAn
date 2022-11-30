@@ -31,7 +31,6 @@ namespace GUI.Staff
             basicInfo_Patients = basicInfoPatient_dataBUS.getAll();
 
             dataGridViewInfoPatient.Rows.Clear();
-            dataGridViewHistory.Rows.Clear();
 
             // TABLE BASIC INFO
             foreach (var item in basicInfo_Patients)
@@ -46,21 +45,19 @@ namespace GUI.Staff
                 dataGridViewInfoPatient.Rows[index].Cells[6].Value = item.phone.Trim();
                 dataGridViewInfoPatient.Rows[index].Cells[7].Value = item.cardID.Trim();
             }
-
-            // TABLE HISTORY EXAM
-            foreach (var item in basicInfo_PatientHistory)
-            {
-                int index = dataGridViewHistory.Rows.Add();
-                dataGridViewHistory.Rows[index].Cells[0].Value = item.examinateID.Trim();
-                dataGridViewHistory.Rows[index].Cells[1].Value = item.hoBacSi.Trim() + item.tenBacSi.Trim();
-                dataGridViewHistory.Rows[index].Cells[2].Value = item.createdAt.Value.Date.ToString();
-            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ThongtinBenhNhan thongtinBenhNhan = new ThongtinBenhNhan(singlePatient);
-            thongtinBenhNhan.ShowDialog();
+            if (txtIDpatient.Text.Length < 0)
+            {
+                MessageBox.Show("Chọn bệnh nhân đã");
+            }
+            else
+            {
+                ThongtinBenhNhan thongtinBenhNhan = new ThongtinBenhNhan(singlePatient);
+                thongtinBenhNhan.ShowDialog();
+            }
 
             this.Refresh(); 
         }
@@ -125,32 +122,6 @@ namespace GUI.Staff
                 txtPhone.Text = singlePatient.phone;
                 txtCardID.Text = singlePatient.cardID;
                 txtJob.Text = singlePatient.patientJob;
-
-                dataGridViewHistory.Rows.Clear();
-                basicInfo_PatientHistory = basicInfoPatient_dataBUS.GetHistoryExams(singlePatient.patientID);
-                foreach (var item in basicInfo_PatientHistory)
-                {
-                    int index = dataGridViewHistory.Rows.Add();
-                    dataGridViewHistory.Rows[index].Cells[0].Value = item.examinateID.Trim();
-                    dataGridViewHistory.Rows[index].Cells[1].Value = item.hoBacSi.Trim() + " " + item.tenBacSi.Trim();
-                    dataGridViewHistory.Rows[index].Cells[2].Value = item.createdAt.ToString();
-                }
-            }
-            catch (Exception)
-            {
-                // Do nothing
-            }
-        }
-
-        private void dataGridViewHistory_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                string rowIndex = dataGridViewHistory.CurrentRow.Cells[0].Value.ToString();
-                singleExam = viewExamination_BUS.getWithID(rowIndex);
-
-                ThongTinDonKham thongTinDonKham = new ThongTinDonKham(singleExam);
-                thongTinDonKham.ShowDialog();
             }
             catch (Exception)
             {
@@ -181,7 +152,7 @@ namespace GUI.Staff
                 }
                 else
                 {
-                    payUsingService thanhToanDichVu = new payUsingService(txtIDpatient.Text, employee.employeeID);
+                    ThanhToanSuDungDichVu thanhToanDichVu = new ThanhToanSuDungDichVu(txtIDpatient.Text, employee.employeeID);
                     thanhToanDichVu.ShowDialog();
                 }
             }
@@ -192,6 +163,8 @@ namespace GUI.Staff
 
         private void btnPay_medicine_Click(object sender, EventArgs e)
         {
+            ThanhToanDonThuoc thanhToanDonThuoc = new ThanhToanDonThuoc(singlePatient.patientID, employee.employeeID);
+            thanhToanDonThuoc.ShowDialog();
         }
     }
 }
